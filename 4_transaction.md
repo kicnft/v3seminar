@@ -112,7 +112,7 @@ clog(hash);
 
 ##### API
 - /transactionStatus
-    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-status-routes
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-status-routes/operation/getTransactionStatus
         - group
             - unconfirmed: 未承認トランザクション
             - confirmed: 承認済みトランザクション
