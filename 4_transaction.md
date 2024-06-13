@@ -154,12 +154,6 @@ sym.models.TransactionType.TRANSFER
 meta.timestamp
 new Date(epochAdjustment * 1000 + Number(meta.timestamp))
 ```
-#### アドレス変換
-
-```js
-tx.recipientAddress
-sym.Address.fromDecodedAddressHexString(tx.recipientAddress).toString()
-```
 
 #### メッセージ変換
 
