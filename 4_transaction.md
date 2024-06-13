@@ -97,35 +97,35 @@ hash = await sigan(tx,alice);
 clog(hash);
 ```
 
-- **trftx ( address, mosaics, message)**
+##### Script
+- trftx ( address, mosaics, message)
     - TransferTransactionV1Descriptor
         - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.descriptors.TransferTransactionV1Descriptor.html
-- **sigan ( desc, signer )**
+- await sigan ( desc, signer )
     - createTransactionFromTypedDescriptor
         - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#createTransactionFromTypedDescriptor
     - attachSignature
         - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolTransactionFactory.html#attachSignature
     - hashTransaction
         - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#hashTransaction
-- **clog ( transactionHash )**
-    - API /transactionStatus
-        - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-status-routes
-            - group
-                - unconfirmed: 未承認トランザクション
-                - confirmed: 承認済みトランザクション
-                - failed: 失敗
-            - code
-                - Success: 成功
-                - Failure_Core_Insufficient_Balance: 残高不足エラー
-    - API /transactions/confirmed
-        - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-routes/operation/searchConfirmedTransactions
-            - {"meta":...,"transaction":...}
-            - code
-                - ResourceNotFound
-    - EXPLORER mainnet
-        - https://symbol.fyi/transactions/
-    - EXPLORER testnet
-        - https://testnet.symbol.fyi/transactions/
+- clog ( transactionHash )
+
+##### API
+- /transactionStatus
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-status-routes
+        - group
+            - unconfirmed: 未承認トランザクション
+            - confirmed: 承認済みトランザクション
+            - failed: 失敗
+        - code
+            - Success: 成功
+            - Failure_Core_Insufficient_Balance: 残高不足エラー
+- /transactions/confirmed
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-routes/operation/searchConfirmedTransactions
+        - {"meta":...,"transaction":...}
+        - code
+            - ResourceNotFound
+
 
 #### ハッシュ値検索
 ```js
