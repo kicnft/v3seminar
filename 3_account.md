@@ -132,7 +132,6 @@ alice = newacnt()
 ### アドレス表示
 ```js
 alice.address.toString()
-`${alice.address}`
 ```
 - Address
     - https://symbol.github.io/symbol/sdk/javascript/classes/nem.models.Address.html
@@ -140,7 +139,6 @@ alice.address.toString()
 ### 秘密鍵表示
 ```js
 alice.keyPair.privateKey.toString()
-`${alice.keyPair.privateKey}`
 ```
 - KeyPair
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.KeyPair.html
