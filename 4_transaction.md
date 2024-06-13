@@ -77,7 +77,7 @@ async function sigcosan(tx,signer,cosigners){
     console.log(res);
     return hash;
 }
-
+console.log("Import Transaction Script")
 
 ```
 
