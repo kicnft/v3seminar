@@ -8,11 +8,11 @@
 
 ## リファレンス
 
-Catapult REST Endpoints (1.0.3)
-https://symbol.github.io/symbol-openapi/v1.0.3/
+- Catapult REST Endpoints (1.0.3)
+    - https://symbol.github.io/symbol-openapi/v1.0.3/
 
-symbol-sdk - v3.2.2
-https://symbol.github.io/symbol/sdk/javascript/index.html
+- symbol-sdk - v3.2.2
+    - https://symbol.github.io/symbol/sdk/javascript/index.html
 
 
 ## ノード選択
