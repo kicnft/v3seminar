@@ -42,7 +42,6 @@ function mossctx(mosaicId,amount,mosaicSupplyChangeAction){
     )
     return desc
 }
-
 ```
 
 ## 演習
@@ -74,9 +73,13 @@ txes = [
 aggtx = aggcptx(txes,alice.publicKey,0);
 hash = await sigcosan(aggtx,alice,[])
 clog(hash);
-
 ```
-#### モザイクID一覧
+
+##### Script
+- mosdftx
+- mossctx
+
+### モザイクID一覧
 ```js
 acntinfo = await api("/accounts/" + alice.address)
 for(mos of acntinfo.account.mosaics){
@@ -84,7 +87,7 @@ for(mos of acntinfo.account.mosaics){
 }
 ```
 
-#### モザイクID変換
+### モザイクID変換
 ```js
 mosid
 mosid.toString(16)
@@ -92,7 +95,7 @@ mosid.toString(16).toUpperCase()
 ```
 
 
-#### モザイク一覧
+### モザイク一覧
 ```js
 acntinfo = await api("/accounts/" + alice.address)
 for(mos of acntinfo.account.mosaics){
@@ -113,9 +116,9 @@ console.log(mosinfo.mosaic.flags & sym.models.MosaicFlags.RESTRICTABLE.value)
 console.log(mosinfo.mosaic.flags & sym.models.MosaicFlags.REVOKABLE.value)
 ```
 
-#### モザイク送信
+### モザイク送信
 ```js
-tx3 = trftx(alice.address,[mosaic("71261F9C04C09144",1)],'');
-hash = await sigan(tx3,alice);
+tx = trftx(alice.address,[mosaic("71261F9C04C09144",1)],'');
+hash = await sigan(tx,alice);
 clog(hash);
 ```
