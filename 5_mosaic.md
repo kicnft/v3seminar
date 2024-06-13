@@ -80,6 +80,10 @@ clog(hash);
 - mossctx ( mosaicId, amount, mosaicSupplyChangeAction )
 
 ##### SDK
+- MosaicFlags
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.MosaicFlags.html
+- generateMosaicId
+    - https://symbol.github.io/symbol/sdk/javascript/functions/symbol.generateMosaicId.html
 - MosaicSupplyChangeAction
     - https://symbol.github.io/symbol/sdk/javascript/classes/nem.models.MosaicSupplyChangeAction.html 
 
@@ -111,22 +115,6 @@ for(mos of acntinfo.account.mosaics){
 ##### API
 - /mosaics/{mosaicId}
     - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Mosaic-routes/operation/getMosaic 
-
-
-#### フラグの確認
-```js
-acntinfo = await api("/accounts/" + alice.address)
-mosinfo = await api("/mosaics/" + acntinfo.account.mosaics[0].id)
-console.log(mosinfo)
-
-console.log(mosinfo.mosaic.flags & sym.models.MosaicFlags.SUPPLY_MUTABLE.value)
-console.log(mosinfo.mosaic.flags & sym.models.MosaicFlags.TRANSFERABLE.value)
-console.log(mosinfo.mosaic.flags & sym.models.MosaicFlags.RESTRICTABLE.value)
-console.log(mosinfo.mosaic.flags & sym.models.MosaicFlags.REVOKABLE.value)
-```
-##### SDK
-- MosaicFlags
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.MosaicFlags.html
  
 ### モザイク送信
 ```js
@@ -136,5 +124,4 @@ clog(hash);
 ```
 
 ##### Script
-
 - mosaic ( mosaicId, amount )
