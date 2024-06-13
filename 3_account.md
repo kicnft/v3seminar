@@ -149,8 +149,8 @@ alice.keyPair.privateKey.toString()
 ### 再作成
 ```js
 alice = newacnt()
-console.log(alice.address.toString())
-console.log(alice.keyPair.privateKey.toString())
+alice.address.toString()
+alice.keyPair.privateKey.toString()
 ```
 
 ### アカウント復元
