@@ -1,5 +1,4 @@
-# 3.アカウント
-## スクリプト
+# スクリプト
 ```js
 //アカウント新規作成　new account
 function newacnt(){
@@ -63,7 +62,8 @@ function generateIV() {
     return window.crypto.getRandomValues(new Uint8Array(12)); // AES-GCM では 12 バイトの IV を使用
 }
 
-async function enckey(secretKey, password) {
+async function enckey(account, password) {
+    const secretKey = account.keyPair.privateKey
     const salt = await generateSalt(16);
     const iterations = 310000; // 推奨される最低回数
     const keyLength = 256; // 256ビット
@@ -119,7 +119,7 @@ async function deckey(hexSalt, hexIV, hexCiphertext, password) {
 
 ```
 
-## 演習
+# 演習
 
 ### アカウント生成
 ```js
@@ -178,8 +178,8 @@ json.account.mosaics
 code = enchex(alice,bob.publicKey,"thisisjustatest")
 dechex(bob,alice.publicKey,code)
 ```
-- enchex ( )
-- dechex ( )
+- enchex ( sendPrikey, recvPubkey, message )
+- dechex ( recvPrikey, sendPubkey, hex)
 
 - MessageEncoder
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.MessageEncoder.html
