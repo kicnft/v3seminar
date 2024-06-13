@@ -101,16 +101,6 @@ clog(hash);
 - await sigan ( desc, signer )
 - clog ( transactionHash )
 
-##### SDK
-- TransferTransactionV1Descriptor
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.descriptors.TransferTransactionV1Descriptor.html
-- createTransactionFromTypedDescriptor
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#createTransactionFromTypedDescriptor
-- attachSignature
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolTransactionFactory.html#attachSignature
-- hashTransaction
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#hashTransaction
-
 ##### API
 - /transactionStatus
     - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-status-routes/operation/getTransactionStatus
@@ -126,6 +116,16 @@ clog(hash);
         - {"meta":...,"transaction":...}
         - code
             - ResourceNotFound
+
+##### SDK
+- TransferTransactionV1Descriptor
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.descriptors.TransferTransactionV1Descriptor.html
+- createTransactionFromTypedDescriptor
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#createTransactionFromTypedDescriptor
+- attachSignature
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolTransactionFactory.html#attachSignature
+- hashTransaction
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#hashTransaction
 
 
 #### ハッシュ値検索
@@ -150,6 +150,13 @@ sym.models.TransactionType.TRANSFER
 meta.timestamp
 new Date(epochAdjustment * 1000 + Number(meta.timestamp))
 ```
+
+##### Script
+- epochAdjustment
+
+##### API
+- /network/properties
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Network-routes/operation/getNetworkProperties 
 
 #### メッセージ変換
 ```js
