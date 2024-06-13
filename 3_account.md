@@ -1,4 +1,5 @@
-# スクリプト
+# 3.アカウント
+## スクリプト
 ```js
 //アカウント新規作成　new account
 function newacnt(){
@@ -120,7 +121,7 @@ async function deckey(hexSalt, hexIV, hexCiphertext, password) {
 console.log("Import Account Script")
 ```
 
-# 演習
+## 演習
 
 ### アカウント生成
 ```js
