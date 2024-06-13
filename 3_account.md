@@ -117,6 +117,7 @@ async function deckey(hexSalt, hexIV, hexCiphertext, password) {
     }
 }
 
+console.log("IMPORT ACCOUNT SCRIPT")
 ```
 
 # 演習
