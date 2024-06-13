@@ -98,7 +98,7 @@ clog(hash);
 ```
 
 ##### Script
-- trftx ( address, mosaics, message)
+- trftx ( address, mosaics, message )
     - TransferTransactionV1Descriptor
         - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.descriptors.TransferTransactionV1Descriptor.html
 - await sigan ( desc, signer )
@@ -129,15 +129,12 @@ clog(hash);
 
 #### ハッシュ値検索
 ```js
-json = await api("/transactions/confirmed/" + hash)
-meta = json.meta
-tx = json.transaction
-console.log(meta)
-console.log(tx)
+info = await api("/transactions/confirmed/" + hash)
+meta = info.meta
+tx = info.transaction
 ```
 
 #### トランザクションタイプ
-
 ```js
 tx.type.value
 sym.models.TransactionType.valueToKey(tx.type.value)
@@ -147,8 +144,6 @@ sym.models.TransactionType.TRANSFER
 - TransactionType
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.TransactionType.html
 
-
-
 #### タイムスタンプ
 ```js
 meta.timestamp
@@ -156,14 +151,17 @@ new Date(epochAdjustment * 1000 + Number(meta.timestamp))
 ```
 
 #### メッセージ変換
-
 ```js
 tx.message
-core.utils.hexToUint8(tx.message)
-core.utils.hexToUint8(tx.message).slice(1)
-tdec = new TextDecoder()
-tdec.decode(core.utils.hexToUint8(tx.message).slice(1))
+u.hexToUint8(tx.message)
+u.hexToUint8(tx.message).slice(1)
+td = new TextDecoder()
+td.decode(u.hexToUint8(txinfo.message).slice(1))
 ```
+
+##### SDK
+- utils.hexToUint8
+  - https://symbol.github.io/symbol/sdk/javascript/functions/index.utils.hexToUint8.html 
 
 ### アグリゲートトランザクション
 ```js
