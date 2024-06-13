@@ -74,10 +74,14 @@ aggtx = aggcptx(txes,alice.publicKey,0);
 hash = await sigcosan(aggtx,alice,[])
 clog(hash);
 ```
-
 ##### Script
-- mosdftx
-- mossctx
+- nonce ( )
+- mosdftx ( mosaicId, duration, mosaicNonce, mosaicFlags, divisibility )
+- mossctx ( mosaicId, amount, mosaicSupplyChangeAction )
+
+##### SDK
+- MosaicSupplyChangeAction
+    - https://symbol.github.io/symbol/sdk/javascript/classes/nem.models.MosaicSupplyChangeAction.html 
 
 ### モザイクID一覧
 ```js
@@ -86,6 +90,7 @@ for(mos of acntinfo.account.mosaics){
     console.log(mos.id)
 }
 ```
+
 
 ### モザイクID変換
 ```js
@@ -103,6 +108,10 @@ for(mos of acntinfo.account.mosaics){
     console.log(mosinfo.mosaic)
 }
 ```
+##### API
+- /mosaics/{mosaicId}
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Mosaic-routes/operation/getMosaic 
+
 
 #### フラグの確認
 ```js
@@ -115,10 +124,17 @@ console.log(mosinfo.mosaic.flags & sym.models.MosaicFlags.TRANSFERABLE.value)
 console.log(mosinfo.mosaic.flags & sym.models.MosaicFlags.RESTRICTABLE.value)
 console.log(mosinfo.mosaic.flags & sym.models.MosaicFlags.REVOKABLE.value)
 ```
-
+##### SDK
+- MosaicFlags
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.MosaicFlags.html
+ 
 ### モザイク送信
 ```js
 tx = trftx(alice.address,[mosaic("71261F9C04C09144",1)],'');
 hash = await sigan(tx,alice);
 clog(hash);
 ```
+
+##### Script
+
+- mosaic ( mosaicId, amount )
