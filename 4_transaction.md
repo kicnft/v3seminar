@@ -189,3 +189,8 @@ aggtx = aggcptx(txes,alice.publicKey,0);
 hash = await sigcosan(aggtx,alice,[])
 clog(hash);
 ```
+
+##### Script
+- embed( transaction, publicKey)
+- aggcptx( transactions[], initPublicKey, cosignaturesCount )
+- await sigcosan( transaction, signer, cosigners[] )
