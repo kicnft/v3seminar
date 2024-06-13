@@ -92,6 +92,7 @@ bob = newacnt();
 ```
 ### 転送トランザクション
 ```js
+//TransferTransaction
 tx = trftx(bob.address,[],'hello');
 hash = await sigan(tx,alice);
 clog(hash);
@@ -142,7 +143,6 @@ tx.type.value
 sym.models.TransactionType.valueToKey(tx.type.value)
 sym.models.TransactionType.TRANSFER
 ```
-
 - TransactionType
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.TransactionType.html
 
@@ -178,6 +178,7 @@ alice = acnt("C9E741092833FEA79D7DB7DC839506BBEB6704631DB9B4D59C60A02BF6B0200C")
 bob = newacnt();
 carol = newacnt();
 
+//TransferTransaction
 tx1 = trftx(bob.address,[],'tx1');
 tx2 = trftx(carol.address,[],"tx2");
 
@@ -186,6 +187,7 @@ txes = [
     embed(tx2,alice.publicKey)
 ];
 
+//AggregateCompleteTransaction
 aggtx = aggcptx(txes,alice.publicKey,0);
 hash = await sigcosan(aggtx,alice,[])
 clog(hash);
