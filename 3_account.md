@@ -125,7 +125,10 @@ async function deckey(hexSalt, hexIV, hexCiphertext, password) {
 ```js
 alice = newacnt()
 ```
+##### Script
 - newacnt ( )
+
+##### SDK
 - SymbolAccount
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolAccount.html
 
@@ -133,6 +136,8 @@ alice = newacnt()
 ```js
 alice.address.toString()
 ```
+
+##### SDK
 - Address
     - https://symbol.github.io/symbol/sdk/javascript/classes/nem.models.Address.html
 
@@ -140,6 +145,7 @@ alice.address.toString()
 ```js
 alice.keyPair.privateKey.toString()
 ```
+##### SDK
 - KeyPair
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.KeyPair.html
 
@@ -159,6 +165,7 @@ alice = acnt("1BEE48A5F3E34BF5AD55072106C1D2CE2D28C1D6926EE824E010C745AC3B9EF3")
 alice.address.toString()
 alice.keyPair.privateKey.toString()
 ```
+##### Script
 - acnt ( privateKeyString )
 
 ### アカウント検索
@@ -167,7 +174,10 @@ bob = await acnt("C9E741092833FEA79D7DB7DC839506BBEB6704631DB9B4D59C60A02BF6B020
 json = await api("/accounts/" + bob.address)
 json.account.mosaics
 ```
+##### Script
 - await api ( path, method, body )
+
+##### API
 - Get account information
     - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Account-routes/operation/getAccountInfo
 
@@ -176,9 +186,11 @@ json.account.mosaics
 code = enchex(alice,bob.publicKey,"thisisjustatest")
 dechex(bob,alice.publicKey,code)
 ```
-- enchex ( sendPrikey, recvPubkey, message )
-- dechex ( recvPrikey, sendPubkey, hex)
+##### Script
+- enchex ( senderPrivateKey, receiverPublickey, message )
+- dechex ( receiverPrivateKey, senderPublicKey, hex)
 
+##### SDK
 - MessageEncoder
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.MessageEncoder.html
 
@@ -193,6 +205,6 @@ plain = await deckey(
     password
 );
 ```
-
-- await enckey ( secretKey, password)
+##### Script
+- await enckey ( account, password)
 - await deckey ( hexSalt, hexIV, hexCiphertext, password )
