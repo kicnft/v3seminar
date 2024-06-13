@@ -186,10 +186,6 @@ dechex(bob,alice.publicKey,code)
 
 ```js
 cipher = await enckey(alice, password);
-cipher.salt
-cipher.iv
-cipher.ciphertext
-
 plain = await deckey(
     cipher.salt,
     cipher.iv,
