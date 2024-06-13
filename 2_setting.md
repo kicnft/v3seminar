@@ -1,4 +1,27 @@
 # 環境設定
+
+## SDK
+
+- Symbol-SDK
+    - https://www.npmjs.com/package/symbol-sdk
+    - https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js
+
+## リファレンス
+
+Catapult REST Endpoints (1.0.3)
+https://symbol.github.io/symbol-openapi/v1.0.3/
+
+symbol-sdk - v3.2.2
+https://symbol.github.io/symbol/sdk/javascript/index.html
+
+
+## ノード選択
+
+- テストネット
+    - https://symbolnodes.org/nodes_testnet/
+- メインネット
+    - https://symbolnodes.org/nodes/
+
 ## 共通スクリプト
 ```js
 //NETWORK
@@ -190,4 +213,4 @@ console.log("Good Luck!");
 ```
 
 
-https://github.com/symbol/symbol/blob/dev/sdk/javascript/src/symbol/models.js
+
