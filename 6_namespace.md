@@ -1,4 +1,6 @@
-# スクリプト
+# 6.ネームスペース
+
+## スクリプト
 ```js
 //NamespaceRegistrationTransaction(ROOT)
 function nsregtx(name,duration){
@@ -81,10 +83,10 @@ console.log("mosaic")
 
 ```
 
-# 演習
+## 演習
 
 ### レンタル手数料計算
-##### ルートネームスペース
+#### ルートネームスペース
 ```js
 info = await api('/network/fees/rental')
 
@@ -93,20 +95,20 @@ blocks = 365 * 24 * 60 * 60 / 30;
 fee = (blocks * fpb) / 1000000;
 ```
 
-##### サブネームスペース
+#### サブネームスペース
 ```js
 subfee = Number(info.effectiveChildNamespaceRentalFee) / 1000000;
 ```
 
 ### ネームスペース作成
-##### ルートネームスペースの作成
+#### ルートネームスペースの作成
 ```js
 tx1 = nsregtx("kicnft_test",30 * 24 * 60 * 60 / 30)
 hash = await sigan(tx1,alice)
 clog(hash)
 ```
 
-##### サブネームスペースの作成
+#### サブネームスペースの作成
 ```js
 tx2 = subnsregtx("address","kicnft_test")
 hash = await sigan(tx2,alice)
@@ -121,7 +123,7 @@ clog(hash);
 
 
 ### リンク
-##### アドレスにリンク
+#### アドレスにリンク
 ```js
 nsid = nstohex("kicnft_test.address")
 tx3 = adralitx(nsid,alice.address,1)
@@ -133,7 +135,7 @@ hash = await sigan(tx3,alice)
 clog(hash);
 ```
 
-##### モザイクにリンク
+#### モザイクにリンク
 ```js
 
 //所有MOSAIC一覧表示
@@ -152,7 +154,7 @@ hash = await sigan(tx4,alice)
 clog(hash);
 ```
 
-#### 確認
+### 確認
 ```js
 nstohex("kicnft_test")
 await api("/namespaces/" + nstohex("kicnft_test"))
@@ -165,7 +167,7 @@ nstohex("kicnft_test.mosaic")
 await api("/namespaces/" + nstohex("kicnft_test.mosaic"))
 ```
 
-#### 未解決アドレスとして使用
+### 未解決アドレスとして使用
 ```js
 adr = nstoadr("kicnft_test.address")
 tx5 = trftx(adr,[],'');
@@ -173,7 +175,7 @@ hash = await sigan(tx5,alice);
 clog(hash);
 ```
 
-#### 未解決モザイクIDとして使用
+### 未解決モザイクIDとして使用
 ```js
 mosid = nstohex("kicnft_test.mosaic")
 tx6 = trftx(alice.address,[mosaic(mosid,1)],'');
