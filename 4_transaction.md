@@ -98,16 +98,18 @@ clog(hash);
 
 ##### Script
 - trftx ( address, mosaics, message )
-    - TransferTransactionV1Descriptor
-        - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.descriptors.TransferTransactionV1Descriptor.html
 - await sigan ( desc, signer )
-    - createTransactionFromTypedDescriptor
-        - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#createTransactionFromTypedDescriptor
-    - attachSignature
-        - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolTransactionFactory.html#attachSignature
-    - hashTransaction
-        - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#hashTransaction
 - clog ( transactionHash )
+
+##### SDK
+- TransferTransactionV1Descriptor
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.descriptors.TransferTransactionV1Descriptor.html
+- createTransactionFromTypedDescriptor
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#createTransactionFromTypedDescriptor
+- attachSignature
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolTransactionFactory.html#attachSignature
+- hashTransaction
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#hashTransaction
 
 ##### API
 - /transactionStatus
