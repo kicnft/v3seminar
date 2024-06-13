@@ -187,7 +187,7 @@ dechex(bob,alice.publicKey,code)
 ### 鍵暗号化
 
 ```js
-cipher = await enckey(alice.keyPair.privateKey.toString(), password);
+cipher = await enckey(alice, password);
 cipher.salt
 cipher.iv
 cipher.ciphertext
