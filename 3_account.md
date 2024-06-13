@@ -178,11 +178,14 @@ alice.keyPair.privateKey.toString()
 ### アカウント検索
 ```js
 bob = await acnt("C9E741092833FEA79D7DB7DC839506BBEB6704631DB9B4D59C60A02BF6B0200C")
-json = await api("/accounts/" + bob.address)
-json.account.mosaics
+info = await api("/accounts/" + bob.address)
+info.account.mosaics
+decadr(info.account.address)
+
 ```
 ##### Script
 - await api ( path, method, body )
+- decadr　(　hexEncodedAddress )
 
 ##### API
 - /accounts/accounts/{accountId}
