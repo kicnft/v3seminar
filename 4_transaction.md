@@ -83,11 +83,15 @@ async function sigcosan(tx,signer,cosigners){
 
 ## 演習
 
-### 転送トランザクション
+### 事前準備
 ```js
 alice = acnt("C9E741092833FEA79D7DB7DC839506BBEB6704631DB9B4D59C60A02BF6B0200C");
-bob = newacnt();
+"https://testnet.symbol.tools?recipient=" + alice.address
 
+bob = newacnt();
+```
+### 転送トランザクション
+```js
 tx = trftx(bob.address,[],'hello');
 hash = await sigan(tx,alice);
 clog(hash);
