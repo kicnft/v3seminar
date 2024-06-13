@@ -185,7 +185,7 @@ json.account.mosaics
 - await api ( path, method, body )
 
 ##### API
-- Get account information
+- /accounts/accounts/{accountId}
     - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Account-routes/operation/getAccountInfo
 
 ### テキスト暗号化
