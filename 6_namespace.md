@@ -156,12 +156,12 @@ clog(hash);
 nsid = nstohex("kicnft_test.address")
 
 //AddressAliasTransaction
-tx3 = adralitx(nsid,alice.address,1)
+tx = adralitx(nsid,alice.address,1)
 //AliasAction
 //1:LINK
 //0:UNLINK
 
-hash = await sigan(tx3,alice)
+hash = await sigan(tx,alice)
 clog(hash)
 ```
 ##### Script
@@ -228,6 +228,45 @@ clog(hash);
 ##### Script
 - nstohex ( name ) //ネームスペースを16進数文字列に変換
 
+### 名前解決の確認
+
+#### アドレス解決
+```js
+info = await api("/transactions/confirmed/C2E2DCCAAA58176C2076C3E9A8548E57581124D4B749237260110A56C20829C3")
+height = info.meta.height
+
+stmt = await api("/statements/resolutions/address?height=" + height)
+
+hex = nstohexadr("kicnft_test.address") //16進数にエンコードされたアドレス文字列
+hexadr = stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0].resolved
+adr = decadr(hexadr)
+info = await api("/accounts/" + adr);
+```
+##### Script
+- nstohexadr ( name )
+    - ネームスペースを16進数アドレス文字列に変換
+- decadr ( hexEncodedAddress )
+    
+
+#### モザイク解決
+```js
+txinfo = await api("/transactions/confirmed/D8121327A6660AB2A1650A857E02A8B94A24AF875CF36E7555D1D6F718F5A823")
+height = txinfo.meta.height
+
+stmt = await api("/statements/resolutions/mosaic?height=" + height)
+
+hex = nstohex("kicnft_test.mosaic");
+mosid = stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0].resolved
+info = await api("/mosaics/" + mosid)
+```
+##### Script
+- nstohex ( name )
+
+##### API
+- /statements/resolutions/mosaic
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Receipt-routes/operation/searchMosaicResolutionStatements
+
+
 ### 逆引き
 
 #### アドレスの逆引き
@@ -264,46 +303,3 @@ res.mosaicNames
 res.mosaicNames[0].names
 ```
 
-### レシート参照
-
-#### アドレス解決
-```js
-info = await api("/transactions/confirmed/C2E2DCCAAA58176C2076C3E9A8548E57581124D4B749237260110A56C20829C3")
-height = info.meta.height
-
-stmt = await api("/statements/resolutions/address?height=" + height)
-
-hex = nstohexadr("kicnft_test.address") //16進数にエンコードされたアドレス文字列
-stmt.data.filter(x=>x.statement.unresolved == hex)[0]
-stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement
-stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0]
-hexadr = stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0].resolved
-adr = decadr(hexadr)
-info = await api("/accounts/" + adr);
-```
-##### Script
-- nstohexadr ( name )
-    - ネームスペースを16進数アドレス文字列に変換
-- decadr ( hexEncodedAddress )
-    
-
-#### モザイク解決
-```js
-txinfo = await api("/transactions/confirmed/D8121327A6660AB2A1650A857E02A8B94A24AF875CF36E7555D1D6F718F5A823")
-height = txinfo.meta.height
-
-stmt = await api("/statements/resolutions/mosaic?height=" + height)
-
-hex = nstohex("kicnft_test.mosaic");
-stmt.data.filter(x=>x.statement.unresolved == hex)[0]
-stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement
-stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0]
-mosid = stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0].resolved
-info = await api("/mosaics/" + mosid)
-```
-##### Script
-- nstohex ( name )
-
-##### API
-- /statements/resolutions/mosaic
-    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Receipt-routes/operation/searchMosaicResolutionStatements
