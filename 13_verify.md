@@ -312,7 +312,7 @@ checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
 
 
 ### メタデータの検証
-```
+```js
 srcAddress = (new sym.Address("TBIL6D6RURP45YQRWV6Q7YVWIIPLQGLZQFHWFEQ")).bytes;
 targetAddress = (new sym.Address("TBIL6D6RURP45YQRWV6Q7YVWIIPLQGLZQFHWFEQ")).bytes;
 
