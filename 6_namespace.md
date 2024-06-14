@@ -210,8 +210,8 @@ await api("/namespaces/" + nstohex("kicnft_test.mosaic"))
 adr = nstoadr("kicnft_test.address")
 //TransferTransaction
 tx = trftx(adr,[],'');
-hash = await sigan(tx,alice);
-clog(hash);
+adrhash = await sigan(tx,alice);
+clog(adrhash);
 ```
 
 ##### Script
@@ -222,8 +222,8 @@ clog(hash);
 mosid = nstohex("kicnft_test.mosaic")
 //TransferTransaction
 tx = trftx(alice.address,[mosaic(mosid,1)],'');
-hash = await sigan(tx,alice);
-clog(hash);
+moshash = await sigan(tx,alice);
+clog(moshash);
 ```
 ##### Script
 - nstohex ( name ) //ネームスペースを16進数文字列に変換
@@ -232,7 +232,7 @@ clog(hash);
 
 #### アドレス解決
 ```js
-info = await api("/transactions/confirmed/C2E2DCCAAA58176C2076C3E9A8548E57581124D4B749237260110A56C20829C3")
+info = await api("/transactions/confirmed/" + adrhash)
 height = info.meta.height
 
 stmt = await api("/statements/resolutions/address?height=" + height)
@@ -250,7 +250,7 @@ info = await api("/accounts/" + adr);
 
 #### モザイク解決
 ```js
-txinfo = await api("/transactions/confirmed/D8121327A6660AB2A1650A857E02A8B94A24AF875CF36E7555D1D6F718F5A823")
+txinfo = await api("/transactions/confirmed/" + moshash)
 height = txinfo.meta.height
 
 stmt = await api("/statements/resolutions/mosaic?height=" + height)
