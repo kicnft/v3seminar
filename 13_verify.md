@@ -1,5 +1,7 @@
 # 13.検証
 
+Symbolは、ブロックに関連する大量のデータを保存するためにツリー構造を使用しています。このデータはブロックヘッダーから直接取得することはできません。これにより、軽量クライアントが台帳全体の履歴を要求することなく、要素（例：トランザクション、レシートステートメント）が存在するかどうかを検証することができます。
+
 ## スクリプト
 ```js
 function hexToUint8(hex) {
@@ -76,8 +78,9 @@ function checkState(stateProof,stateHash,pathHash,rootHash){
 }
 
 ```
-
 ## 演習
+
+### トランザクションの検証
 
 ```
 height = 686312;
@@ -85,16 +88,13 @@ tx = sym.SymbolTransactionFactory.deserialize(u.hexToUint8("2802000000000000A515
 hash = chain.hashTransaction(tx);
 console.log(hash);
 console.log(tx);
-```
 
-
-```js
 res = chain.verifyTransaction(tx, tx.signature);
 ```
-
+##### SDK
+- verifyTransaction
 
 ```js
-
 mchash = hash;
 if (tx.cosignatures !== undefined && tx.cosignatures.length > 0) {
   hasher = sha3_256.create();
@@ -126,6 +126,7 @@ merkleProof = paths;
 result = sdkSymbol.proveMerkle(leaf, merkleProof, HRoot);
 console.log(result);
 ```
+
 ### ブロックヘッダーの検証
 ```js
 info = await api("/blocks/" + height)
@@ -163,7 +164,6 @@ if(block.type === 33347){//importance block
 hash = uint8ToHex(hasher.digest());
 ```
 ### stateHashの検証
-
 ```js
 hasher = sha3_256.create();
 hasher.update(hexToUint8(info.meta.stateHashSubCacheMerkleRoots[0])); //AccountState
@@ -258,6 +258,8 @@ stateProof = await api(`/accounts/${aliceAddress}/merkle` )
 checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
 ```
 
+##### Script
+- checkState ( stateProof, stateHash, pathHash, rootHash )
 
 ### シークレットロックの検証
 
@@ -286,7 +288,6 @@ hasher = sha3_256.create();
 secretStateHash = uint8ToHex(hasher.update(bytes).digest());
 stateProof = await api(`/lock/secret/${secretStateHash}/merkle` )
 
-
 blockInfo = await api("/blocks?order=desc");
 rootHash = blockInfo.data[0].meta.stateHashSubCacheMerkleRoots[5];
 
@@ -297,6 +298,9 @@ alicePathHash = uint8ToHex(hasher.update(bytes).digest());
 
 checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
 ```
+##### Script
+- checkState ( stateProof, stateHash, pathHash, rootHash )
+
 
 ### メタデータの検証
 ```
@@ -315,8 +319,6 @@ compositeHash = uint8ToHex(hasher.digest());
 hasher = sha3_256.create();
 bytes = new Uint8Array(hexToUint8(compositeHash));
 pathHash = uint8ToHex(hasher.update(bytes).digest());
-
-
 
 //stateHash(Value値)
 hasher = sha3_256.create();
@@ -342,46 +344,6 @@ stateProof = await api(`/metadata/${compositeHash}/merkle` )
 
 //検証
 checkState(stateProof,stateHash,pathHash,rootHash);
-
-
-//ワールドステートの検証
-function checkState(stateProof,stateHash,pathHash,rootHash){
-  merkleLeaf = undefined;
-  merkleBranches = [];
-
-
-	for (let i = 0; i < stateProof.tree.length; i++) {
-	    if (i === stateProof.tree.length - 1) {
-	      merkleLeaf = stateProof.tree[i];
-	    } else {
-	      merkleBranches.push(stateProof.tree[i]);
-	    }
-	}
-
-  merkleBranches.reverse();
-
-  const leafHash = getLeafHash(merkleLeaf.encodedPath,stateHash);
-
-  let linkHash = leafHash; //最初のlinkHashはleafHash
-  let bit="";
-  for(let i = 0; i < merkleBranches.length; i++){
-      const branch = merkleBranches[i];
-      const branchLink = branch.links.find(x=>x.link === linkHash)
-      linkHash = getBranchHash(branch.encodedPath,branch.links);
-      bit = merkleBranches[i].path.slice(0,merkleBranches[i].nibbleCount) + branchLink.bit + bit ;
-  }
-
-  const treeRootHash = linkHash; //最後のlinkHashはrootHash
-  let treePathHash = bit + merkleLeaf.path;
-
-  if(treePathHash.length % 2 == 1){
-    treePathHash = treePathHash.slice( 0, -1 );
-  }
- 
-  //検証
-  console.log(treeRootHash === rootHash);
-  console.log(treePathHash === pathHash);
-}
-
-
 ```
+##### Script
+- checkState ( stateProof, stateHash, pathHash, rootHash )
