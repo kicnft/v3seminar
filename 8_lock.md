@@ -126,9 +126,9 @@ clog(sigedtx.hash)
 payload = sigedtx.request.payload
 ```
 ##### Script
-- aggbdtx ( transactions, initPublicKey, cosignatureCount )
-- sig ( aggregateTx, signer )
-- hlocktx ( hash ) 
+- **aggbdtx** ( transactions, initPublicKey, cosignatureCount )
+- **sig** ( aggregateTx, signer )
+- **hlocktx** ( hash ) 
 
 ##### API
 - /transactions/partial
