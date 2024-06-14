@@ -128,14 +128,14 @@ await api(`/restrictions/account/${dave.address}`)
 
 ### グローバルモザイク制限
 
-#### 事前準備
+### 事前準備１（アカウント作成）
 ```js
 ellen = newacnt()
 tx = trftx(ellen.address,[mosaic(xymid,60_000000n)],"")// 52XYM以上
 hash = await sigan(tx,alice)
 clog(hash)
 ```
-#### モザイク作成
+### 制限モザイク作成
 ```js
 mosnc = nonce()
 mosid = sym.generateMosaicId(ellen.address, mosnc)
@@ -154,6 +154,7 @@ tx2 = mossctx(mosid,1000,1)
 //DECREASE:0
 
 key = sym.metadataGenerateKey("KYC"); // restrictionKey 
+//MosaicGlobalRestrictionTransaction
 tx3 = mosglorestx(mosid,0,key,0n,1n,0,1)
 
 txes = [
@@ -167,16 +168,18 @@ hash = await sigcosan(aggtx,ellen,[])
 clog(hash);
 ```
 
-- mosglorestx
-    - (mosaicId, referenceMosaicId, restrictionKey, previousRestrictionValue, newRestrictionValue, previousRestrictionType, newRestrictionType)
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.descriptors.MosaicGlobalRestrictionTransactionV1Descriptor.html
+##### Script
+- mosglorestx ( mosaicId, referenceMosaicId, restrictionKey, previousRestrictionValue, newRestrictionValue, previousRestrictionType, newRestrictionType )
 
+##### SDK
 - MosaicRestrictionType
-    - EQ,GE,GT,LE,LT,NE,NONE
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.MosaicRestrictionType.html
 
+### アカウント適格情報設定
 ```js
 frank = newacnt()
+
+//MosaicAddressRestrictionTransaction
 tx1 = mosadrrestx(mosid,key,negkey,1n,ellen.address)
 tx2 = mosadrrestx(mosid,key,negkey,1n,frank.address)
 
@@ -190,9 +193,7 @@ hash = await sigcosan(aggtx,ellen,[])
 clog(hash)
 ```
 
-- mosadrrestx
-    - (mosaicId, restrictionKey, previousRestrictionValue, newRestrictionValue, targetAddress)
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.descriptors.MosaicAddressRestrictionTransactionV1Descriptor.html
+- mosadrrestx ( mosaicId, restrictionKey, previousRestrictionValue, newRestrictionValue, targetAddress )
 
 ### 確認
 ```js
