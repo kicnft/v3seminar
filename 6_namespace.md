@@ -265,6 +265,7 @@ res.mosaicNames[0].names
 ```js
 info = await api("/transactions/confirmed/C2E2DCCAAA58176C2076C3E9A8548E57581124D4B749237260110A56C20829C3")
 height = info.meta.height
+
 stmt = await api("/statements/resolutions/address?height=" + height)
 
 hex = nstohexadr("kicnft_test.address") //16進数にエンコードされたアドレス文字列
@@ -283,6 +284,7 @@ info = await api("/accounts/" + adr);
 ```js
 txinfo = await api("/transactions/confirmed/D8121327A6660AB2A1650A857E02A8B94A24AF875CF36E7555D1D6F718F5A823")
 height = txinfo.meta.height
+
 stmt = await api("/statements/resolutions/mosaic?height=" + height)
 
 hex = nstohex("kicnft_test.mosaic");
@@ -291,23 +293,10 @@ stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement
 stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0]
 mosid = stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0].resolved
 info = await api("/mosaics/" + mosid)
-
-
 ```
+##### Script
+- nstohex ( name )
 
-
-```js
-//ネームスペースの作成
-tx = subnsregtx("address","kicnft")
-hash = await sigan(tx,alice) //署名＆通知
-
-//アドレスにリンク
-nsid = nstohex("kicnft.address")
-tx = adralitx(nsid,alice.address,1)
-hash = await sigan(tx,alice) //署名＆通知
-
-//ネームスペースを使用して送信
-adr = nstoadr("kicnft.address")
-tx = trftx(adr,[],''); //0XYM ノーコメント
-hash = await sigan(tx,alice) //署名＆通知
-```
+##### API
+- /statements/resolutions/mosaic
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Receipt-routes/operation/searchMosaicResolutionStatements
