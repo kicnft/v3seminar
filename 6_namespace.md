@@ -7,6 +7,16 @@
 
 https://docs.symbol.dev/concepts/namespace.html
 
+## 演習内容
+- レンタル手数料計算
+- ネームスペース作成
+- アドレスやモザイクへのリンク
+- 登録内容の確認
+- 未解決アドレスとして使用
+- 未解決モザイクとして使用
+- 逆引き
+- 未解決使用をレシートで確認
+
 ## スクリプト
 ```js
 //NamespaceRegistrationTransaction(ROOT)
@@ -199,6 +209,10 @@ hash = await sigan(tx5,alice);
 clog(hash);
 ```
 
+##### Script
+- nstoadr ( name )
+    - ネームスペースをアドレスに変換
+
 ### 未解決モザイクIDとして使用
 ```js
 mosid = nstohex("kicnft_test.mosaic")
@@ -207,8 +221,13 @@ hash = await sigan(tx6,alice);
 clog(hash);
 ```
 
+##### Script
+- nstohex ( name )
+    - ネームスペースを16進数文字列に変換
+
 ### 逆引き
 
+#### アドレスの逆引き
 ```js
 nsinfo = await api("/namespaces/" + nstohex("kicnft_test.address"))
 nsinfo.namespace
@@ -221,6 +240,11 @@ res = await api("/namespaces/account/names","POST",body)
 res.accountNames
 res.accountNames[0].names
 ```
+
+##### API
+- /namespaces/account/names
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Namespace-routes/operation/getAccountsNames
+
 
 ```js
 //モザイクIDを確認
@@ -250,8 +274,10 @@ stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntrie
 hexadr = stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0].resolved
 adr = sym.Address.fromDecodedAddressHexString(hexadr).toString()
 info = await api("/accounts/" + adr);
-
 ```
+##### Script
+- nstohexadr ( name )
+    - ネームスペースを16進数アドレス文字列に変換
 
 #### モザイク解決
 ```js
