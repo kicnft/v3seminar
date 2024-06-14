@@ -126,7 +126,7 @@ merkleProof = paths;
 result = sdkSymbol.proveMerkle(leaf, merkleProof, HRoot);
 console.log(result);
 ```
-
+### ブロックヘッダーの検証
 ```js
 info = await api("/blocks/" + height)
 block = info.block;
@@ -162,6 +162,7 @@ if(block.type === 33347){//importance block
 
 hash = uint8ToHex(hasher.digest());
 ```
+### stateHashの検証
 
 ```js
 hasher = sha3_256.create();
@@ -178,7 +179,7 @@ hash = uint8ToHex(hasher.digest()).toUpperCase();
 console.log(info.block.stateHash === hash);
 ```
 
-
+### アカウントの検証
 ```js
 aliceAddress = new sym.Address(
   hexToUint8("9850BF0FD1A45FCEE211B57D0FE2B6421EB81979814F6292")
@@ -258,7 +259,7 @@ checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
 ```
 
 
-# シークレットロック
+### シークレットロックの検証
 
 ```js
 bytes = new Uint8Array([
@@ -297,7 +298,7 @@ alicePathHash = uint8ToHex(hasher.update(bytes).digest());
 checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
 ```
 
-### メタデータ
+### メタデータの検証
 ```
 srcAddress = (new sym.Address("TBIL6D6RURP45YQRWV6Q7YVWIIPLQGLZQFHWFEQ")).bytes;
 targetAddress = (new sym.Address("TBIL6D6RURP45YQRWV6Q7YVWIIPLQGLZQFHWFEQ")).bytes;
