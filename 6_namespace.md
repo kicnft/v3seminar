@@ -15,7 +15,7 @@ https://docs.symbol.dev/concepts/namespace.html
 - 未解決アドレスとして使用
 - 未解決モザイクとして使用
 - 逆引き
-- 未解決使用をレシートで確認
+- 名前解決の確認
 
 ## スクリプト
 ```js
@@ -140,7 +140,6 @@ tx = subnsregtx("address","kicnft_test")
 hash = await sigan(tx,alice)
 clog(hash);
 ```
-
 ```js
 //NamespaceRegistrationTransaction
 tx = subnsregtx("mosaic","kicnft_test")
@@ -165,13 +164,12 @@ tx3 = adralitx(nsid,alice.address,1)
 hash = await sigan(tx3,alice)
 clog(hash)
 ```
-
 ##### Script
+- nstohex ( name ) //ネームスペースを16進数文字列に変換
 - adralitx ( hexNamespaceId, address, aliasAction )
 
 #### モザイクにリンク
 ```js
-
 //所有MOSAIC一覧表示
 acntinfo = await api("/accounts/" + alice.address)
 for(mos of acntinfo.account.mosaics){
@@ -179,14 +177,17 @@ for(mos of acntinfo.account.mosaics){
     console.log(mosinfo.mosaic)
 }
 
-//MOSAIC ID指定
+//所有モザイクの中から一つ選んで指定
 mosid = "71261F9C04C09144"
 
 nsid = nstohex("kicnft_test.mosaic")
-tx4 = mosalitx(nsid,mosid,1)
-hash = await sigan(tx4,alice)
+tx = mosalitx(nsid,mosid,1)
+hash = await sigan(tx,alice)
 clog(hash);
 ```
+##### Script
+- nstohex ( name ) //ネームスペースを16進数文字列に変換
+- mosalitx ( hexNamespaceId, hexMosaicId, aliasAction )
 
 ### 確認
 ```js
@@ -195,11 +196,14 @@ await api("/namespaces/" + nstohex("kicnft_test"))
 
 nstohex("kicnft_test.address")
 await api("/namespaces/" + nstohex("kicnft_test.address"))
-```
-```js
+
 nstohex("kicnft_test.mosaic")
 await api("/namespaces/" + nstohex("kicnft_test.mosaic"))
 ```
+
+##### Script
+- nstohex ( name ) //ネームスペースを16進数文字列に変換
+
 
 ### 未解決アドレスとして使用
 ```js
@@ -210,8 +214,7 @@ clog(hash);
 ```
 
 ##### Script
-- nstoadr ( name )
-    - ネームスペースをアドレスに変換
+- nstoadr ( name )　//ネームスペースをアドレスに変換
 
 ### 未解決モザイクIDとして使用
 ```js
@@ -220,10 +223,8 @@ tx6 = trftx(alice.address,[mosaic(mosid,1)],'');
 hash = await sigan(tx6,alice);
 clog(hash);
 ```
-
 ##### Script
-- nstohex ( name )
-    - ネームスペースを16進数文字列に変換
+- nstohex ( name ) //ネームスペースを16進数文字列に変換
 
 ### 逆引き
 
@@ -233,14 +234,16 @@ nsinfo = await api("/namespaces/" + nstohex("kicnft_test.address"))
 nsinfo.namespace
 nsinfo.namespace.alias
 nsinfo.namespace.alias.address
-address = sym.Address.fromDecodedAddressHexString(nsinfo.namespace.alias.address).toString()
+address = decadr(nsinfo.namespace.alias.address)
 
 body = {"addresses": [address]};
 res = await api("/namespaces/account/names","POST",body)
 res.accountNames
 res.accountNames[0].names
 ```
-
+##### Script
+- decadr ( hexEncodedAddress )
+  
 ##### API
 - /namespaces/account/names
     - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Namespace-routes/operation/getAccountsNames
@@ -273,12 +276,14 @@ stmt.data.filter(x=>x.statement.unresolved == hex)[0]
 stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement
 stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0]
 hexadr = stmt.data.filter(x=>x.statement.unresolved == hex)[0].statement.resolutionEntries[0].resolved
-adr = sym.Address.fromDecodedAddressHexString(hexadr).toString()
+adr = decadr(hexadr)
 info = await api("/accounts/" + adr);
 ```
 ##### Script
 - nstohexadr ( name )
     - ネームスペースを16進数アドレス文字列に変換
+- decadr ( hexEncodedAddress )
+    
 
 #### モザイク解決
 ```js
