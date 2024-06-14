@@ -26,13 +26,16 @@ console.log(`bob private key: ${bob.keyPair.privateKey}`)
 
 ### トランザクション作成
 ```js
+//TransferTransaction
 tx1 = trftx(alice.address,[],"tx1")
 tx2 = trftx(bob.address,[],"tx2")
+
 txes = [
     embed(tx1,bob.publicKey),
     embed(tx2,alice.publicKey)
 ]
 
+//AggregateCompleteTransaction
 aggtx = aggcptx(txes,alice.publicKey,1)
 res = sig(aggtx,alice,[])
 console.log(`payload:\n${res.request.payload}`)
