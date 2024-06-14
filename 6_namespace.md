@@ -102,6 +102,10 @@ blocks = 365 * 24 * 60 * 60 / 30;
 fee = (blocks * fpb) / 1000000;
 ```
 
+##### API
+- /network/fees/rental
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Network-routes/operation/getRentalFees
+
 #### サブネームスペース
 ```js
 subfee = Number(info.effectiveChildNamespaceRentalFee) / 1000000;
@@ -110,37 +114,50 @@ subfee = Number(info.effectiveChildNamespaceRentalFee) / 1000000;
 ### ネームスペース作成
 #### ルートネームスペースの作成
 ```js
-tx1 = nsregtx("kicnft_test",30 * 24 * 60 * 60 / 30)
-hash = await sigan(tx1,alice)
+//NamespaceRegistrationTransaction
+tx = nsregtx("kicnft_test",30 * 24 * 60 * 60 / 30)
+hash = await sigan(tx,alice)
 clog(hash)
 ```
 
+##### Script
+- neregtx( name, duration )
+
 #### サブネームスペースの作成
 ```js
-tx2 = subnsregtx("address","kicnft_test")
-hash = await sigan(tx2,alice)
+//NamespaceRegistrationTransaction
+tx = subnsregtx("address","kicnft_test")
+hash = await sigan(tx,alice)
 clog(hash);
 ```
 
 ```js
-tx2 = subnsregtx("mosaic","kicnft_test")
-hash = await sigan(tx2,alice)
+//NamespaceRegistrationTransaction
+tx = subnsregtx("mosaic","kicnft_test")
+hash = await sigan(tx,alice)
 clog(hash);
 ```
+##### Script
+- subnsregtx ( name, parentName )
 
 
 ### リンク
 #### アドレスにリンク
 ```js
 nsid = nstohex("kicnft_test.address")
+
+//AddressAliasTransaction
 tx3 = adralitx(nsid,alice.address,1)
 //AliasAction
 //1:LINK
 //0:UNLINK
 
 hash = await sigan(tx3,alice)
-clog(hash);
+clog(hash)
 ```
+
+##### Script
+- adralitx ( hexNamespaceId, address, aliasAction )
 
 #### モザイクにリンク
 ```js
