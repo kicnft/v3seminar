@@ -243,8 +243,7 @@ adr = decadr(hexadr)
 info = await api("/accounts/" + adr);
 ```
 ##### Script
-- nstohexadr ( name )
-    - ネームスペースを16進数アドレス文字列に変換
+- nstohexadr ( name ) //ネームスペースを16進数アドレス文字列に変換
 - decadr ( hexEncodedAddress )
     
 
