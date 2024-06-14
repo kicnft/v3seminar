@@ -266,20 +266,15 @@ info = await api("/mosaics/" + mosid)
 - /statements/resolutions/mosaic
     - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Receipt-routes/operation/searchMosaicResolutionStatements
 
-
 ### 逆引き
 
 #### アドレスの逆引き
 ```js
 nsinfo = await api("/namespaces/" + nstohex("kicnft_test.address"))
-nsinfo.namespace
-nsinfo.namespace.alias
-nsinfo.namespace.alias.address
 address = decadr(nsinfo.namespace.alias.address)
 
 body = {"addresses": [address]};
 res = await api("/namespaces/account/names","POST",body)
-res.accountNames
 res.accountNames[0].names
 ```
 ##### Script
@@ -289,17 +284,13 @@ res.accountNames[0].names
 - /namespaces/account/names
     - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Namespace-routes/operation/getAccountsNames
 
-
 ```js
 //モザイクIDを確認
 nsinfo = await api("/namespaces/" + nstohex("kicnft_test.mosaic"))
-nsinfo.namespace
-nsinfo.namespace.alias
 mosaicId = nsinfo.namespace.alias.mosaicId
 
 body = {"mosaicIds": [mosaicId]};
 res = await api("/namespaces/mosaic/names","POST",body)
-res.mosaicNames
 res.mosaicNames[0].names
 ```
 
