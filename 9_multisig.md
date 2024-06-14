@@ -79,6 +79,9 @@ aggtx = aggcptx(txes,bob.publicKey,4);
 hash = await sigcosan(aggtx,bob,[carol1,carol2,carol3,carol4])
 clog(hash)
 ```
+##### Script
+- msigtx ( minRemoval, minApproval, addressAdditions, addressDeletions )
+
 #### 確認
 ```js
 info = await api("/account/" + bob.address.toString() + "/multisig")
@@ -86,9 +89,6 @@ for(adr of info.multisig.cosignatoryAddresses){
     console.log(decadr(adr))
 }
 ```
-##### Script
-- msigtx ( minRemoval, minApproval, addressAdditions, addressDeletions )
-
 ##### API
 - /account/{address}/multsig
   - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Multisig-routes/operation/getAccountMultisig
@@ -102,14 +102,12 @@ aggtx = aggcptx(txes,carol1.publicKey,2); //起案者
 hash = await sigcosan(aggtx,carol1,[carol2,carol3]); //署名
 clog(hash);
 ```
-##### Script
-- aggcptx ( transactions, initPublicKey, cosignatureCount )
-- sigcosan ( tx, signer, cosigners[] )
 
 #### アグリゲートボンデッドトランザクションで送信
 ```js
 tx = trftx(alice.address,[],'');
 txes = [embed(tx,bob.publicKey)]; //マルチシグ化したアカウントのアセット
+//AggregateBondedTransaction
 aggtx = aggbdtx(txes,carol1.publicKey,2); //起案者
 sigedtx = sig(aggtx,carol1)
 
@@ -124,7 +122,7 @@ res = await api("/transactions/partial","PUT",sigedtx.request)
 console.log(res)
 clog(sigedtx.hash)
 
-txt = sigedtx.request.payload
+payload = sigedtx.request.payload
 ```
 #### 連署
 ```js
@@ -133,7 +131,6 @@ clog(phash)
 phash = await cosan(aggtx,carol3)
 clog(phash)
 ```
-
 ##### Script
 - cosan ( aggregateTx, cosigner )
 
@@ -143,15 +140,8 @@ info = await api("/transactions/confirmed/" + phash)
 info.transaction.transactions[0].transaction.signerPublicKey
 ```
 
-
-
-##### API
-- /transactions/partial
-- /transactions/confirmed/
-
 ### 構成変更
-
-#### carol3を除名
+#### Carol3の除名
 ```js
 //MultisigAccountModificationTransaction
 tx = msigtx(-1,-1,[],[carol3.address])
@@ -165,7 +155,7 @@ console.log(`Carol2:${carol2.address}`)
 console.log(`Carol4:${carol4.address}`)
 ```
 
-#### carol4とcarol5を交代
+#### Carol4とCarol5を交代
 ```js
 //MultisigAccountModificationTransaction
 tx = msigtx(0,0,[carol5.address],[carol4.address])
