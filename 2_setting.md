@@ -5,8 +5,12 @@
 - Symbol-SDK
     - npm
         - https://www.npmjs.com/package/symbol-sdk
-    - unpkg
+    - unpkg bundle
         - https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js
+
+```js
+bundle = await import("https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js");
+```
 
 ## リファレンス
 
