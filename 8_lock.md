@@ -107,11 +107,11 @@ txes = [
     embed(tx2,bob.publicKey)
 ];
 
-//アグリゲートトランザクションの作成と署名
+//AggregateBondedTransaction
 aggtx = aggbdtx(txes,alice.publicKey,0);
 sigedtx = sig(aggtx,alice)
 
-//ハッシュロックトランザクション
+//HashLockTransaction
 hltx = hlocktx(sigedtx.hash);
 hlhash = await sigan(hltx,alice);
 clog(hlhash);
@@ -123,72 +123,76 @@ res = await api("/transactions/partial","PUT",sigedtx.request)
 console.log(res)
 clog(sigedtx.hash)
 
-txt = sigedtx.request.payload
+payload = sigedtx.request.payload
 ```
+##### Script
+- aggbdtx ( transactions, initPublicKey, cosignatureCount )
+- sig ( aggregateTx, signer )
+- hlocktx ( hash ) 
+
+##### API
+- /transactions/partial
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-routes/operation/searchPartialTransactions
 
 ### Bobの連署
 ```js
-
-//検証
-txt
-u.hexToUint8(txt)
-aggtx = m.TransactionFactory.deserialize(u.hexToUint8(txt))
-
-//連署
+payload
+aggtx = m.TransactionFactory.deserialize(u.hexToUint8(payload))
 phash = await cosan(aggtx,bob)
 clog(phash)
-
-//参考：連署のみ
-cosign = bob.keyPair.sign(sigedtx.hash)
-u.uint8ToHex(cosign.bytes)
 ```
-
+##### Script
+- cosan ( aggregateTx, cosigner ) 
+##### SDK
+- TransactionFactory.deserialize
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolTransactionFactory.html#deserialize
 
 ### シークレットロック
-
-
-
-
 ```js
-sha3_256 = (await import('https://cdn.skypack.dev/@noble/hashes/sha3')).sha3_256;
+sha3_256 = (await import('https://cdn.skypack.dev/@noble/hashes/sha3')).sha3_256
 
-proof = crypto.getRandomValues(new Uint8Array(20)); // 解除用キーワード
+proof = crypto.getRandomValues(new Uint8Array(20))
 hash = sha3_256.create();
 hash.update(proof);
-secret = hash.digest();                             // ロック用キーワード  
-console.log("secret:" + u.uint8ToHex(secret));
-console.log("proof:" + u.uint8ToHex(proof));
-
+secret = hash.digest();
+//SecretLockTransaction
 tx = slocktx(bob.address,secret,mosaic(xymhex,1000000))
 hash = await sigan(tx,alice);
 clog(hash)
 ```
 
+##### Script
+- slocktx ( address, secret, mosaic )
 
 ##### 確認
 ```js
 info = await api("/lock/secret?secret=" + u.uint8ToHex(secret))
-info.data[0]
 linfo = info.data[0].lock
-
-sym.Address.fromDecodedAddressHexString(linfo.ownerAddress).toString()
-sym.Address.fromDecodedAddressHexString(linfo.recipientAddress).toString()
-
 //LockHashAlgorithm
 //0: 'Op_Sha3_256'
 //1: 'Op_Hash_160'
 //2: 'Op_Hash_256'
 
-
+decadr(linfo.ownerAddress)
+decadr(linfo.recipientAddress)
 ```
+##### API
+- /lock/secret
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Secret-Lock-routes/operation/searchSecretLock
+
+##### SDK
+- LockHashAlgorithm
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.LockHashAlgorithm.html
 
 ### シークレットプルーフ
-
 ```js
+//SecretProofTransaction
 tx = prooftx(bob.address,secret,proof)
 hash = await sigan(tx,bob);
 clog(hash)
 ```
+##### Script
+- prooftx ( address, secret, proof )
 
 ##### 確認
 ```js
