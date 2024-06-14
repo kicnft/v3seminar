@@ -3,8 +3,10 @@
 ## SDK
 
 - Symbol-SDK
-    - https://www.npmjs.com/package/symbol-sdk
-    - https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js
+    - npm
+        - https://www.npmjs.com/package/symbol-sdk
+    - unpkg
+        - https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js
 
 ## リファレンス
 
