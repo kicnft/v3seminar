@@ -131,17 +131,22 @@ clog(hash);
 ##### SDK
 - metadataGenerateKey
     -  https://symbol.github.io/symbol/sdk/javascript/functions/symbol.metadataGenerateKey.html
-- metadataUpdateValue *Script内部で使用
-    - https://symbol.github.io/symbol/sdk/javascript/functions/symbol.metadataUpdateValue.html
 
 #### 確認
 ```js
-dec = new TextDecoder()
 info = await api("/metadata?" + query.toString())
-info.data[0].metadataEntry.value
-core.utils.hexToUint8(info.data[0].metadataEntry.value)
-dec.decode(core.utils.hexToUint8(info.data[0].metadataEntry.value))
+value = core.utils.hexToUint8(info.data[0].metadataEntry.value)
+td = new TextDecoder()
+td.decode(value))
 ```
+
+##### API
+- /metadata
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Metadata-routes/operation/getMetadataMerkle
+
+##### SDK
+- hexToUint8
+    - https://symbol.github.io/symbol/sdk/javascript/functions/index.utils.hexToUint8.html
 
 ### モザイクに登録
 ```js
@@ -173,14 +178,34 @@ hash = await sigcosan(aggtx,alice,[])
 clog(hash);
 ```
 
+##### Script
+- metaquery ( addressOrId, sourceAddress, scopedMetadataKey, metadataType )
+- updvalue ( info, value )
+- mosmetatx ( targetAddress, key, targetMosaic, sizeDeltaAndValueMap )
+
+##### API
+- /metadata
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Metadata-routes/operation/getMetadataMerkle
+
+##### SDK
+- metadataGenerateKey
+    -  https://symbol.github.io/symbol/sdk/javascript/functions/symbol.metadataGenerateKey.html
+
+
 #### 確認
 ```js
-dec = new TextDecoder()
 info = await api("/metadata?" + query.toString())
-info.data[0].metadataEntry.value
-core.utils.hexToUint8(info.data[0].metadataEntry.value)
-dec.decode(core.utils.hexToUint8(info.data[0].metadataEntry.value))
+value = core.utils.hexToUint8(info.data[0].metadataEntry.value)
+td = new TextDecoder()
+td.decode(value))
 ```
+##### API
+- /metadata
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Metadata-routes/operation/getMetadataMerkle
+
+##### SDK
+- hexToUint8
+    - https://symbol.github.io/symbol/sdk/javascript/functions/index.utils.hexToUint8.html
 
 ### ネームスペースに登録
 
@@ -208,12 +233,31 @@ aggtx = aggcptx(txes,alice.publicKey,0);
 hash = await sigcosan(aggtx,alice,[])
 clog(hash);
 ```
+##### Script
+- metaquery ( addressOrId, sourceAddress, scopedMetadataKey, metadataType )
+- updvalue ( info, value )
+- nsmetatx ( targetAddress, key, targetNamespace, sizeDeltaAndValueMap )
+
+##### API
+- /metadata
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Metadata-routes/operation/getMetadataMerkle
+
+##### SDK
+- metadataGenerateKey
+    -  https://symbol.github.io/symbol/sdk/javascript/functions/symbol.metadataGenerateKey.html
+
 
 #### 確認
 ```js
-dec = new TextDecoder()
 info = await api("/metadata?" + query.toString())
-info.data[0].metadataEntry.value
-core.utils.hexToUint8(info.data[0].metadataEntry.value)
-dec.decode(core.utils.hexToUint8(info.data[0].metadataEntry.value))
+value = core.utils.hexToUint8(info.data[0].metadataEntry.value)
+td = new TextDecoder()
+td.decode(value))
 ```
+##### API
+- /metadata
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Metadata-routes/operation/getMetadataMerkle
+
+##### SDK
+- hexToUint8
+    - https://symbol.github.io/symbol/sdk/javascript/functions/index.utils.hexToUint8.html
