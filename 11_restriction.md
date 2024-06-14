@@ -68,15 +68,17 @@ sha3_256 = (await import('https://cdn.skypack.dev/@noble/hashes/sha3')).sha3_256
 ```
 
 ## 演習
+### アカウント制限
+
+### 事前準備
 ```js
 dave = newacnt()
 tx = trftx(dave.address,[mosaic(xymid,100_000000n)],'');
 hash = await sigan(tx,alice);
 clog(hash);
-
-
 ```
 
+### アカウント-アドレス制限
 ```js
 bob = newacnt()
 
@@ -87,53 +89,51 @@ flags = new sym.models.AccountRestrictionFlags(f);
 //32769:BlockIncomingAddress: 32768_block + 0_incoming     + 1_address
 //49153:BlockOutgoingAddress: 32768_block + 16384_outgoing + 1_address
 
+//AccountAddressRestrictionTransaction
 tx = acntrestx(flags,[bob.address],[])
 hash = await sigan(tx,dave)
 clog(hash)
 ```
 
+### アカウント-モザイク制限
 ```js
 f = 2 + 32768 //BlockMosaicId
 flags = new sym.models.AccountRestrictionFlags(f);
 //    2:AllowMosaic: 0_allow     + 2_mosaic_id
 //32770:BlockMosaic: 32768_block + 2_mosaic_id
 
+//AccountMosaicRestrictionTransaction
 tx = mosrestx(flags,[moshex("71261F9C04C09144")],[])
 hash = await sigan(tx,dave)
 clog(hash)
 ```
 
+### アカウント-操作制限
 ```js
 f = 4 + 16384 //AllowOutgoingTransactionType
 flags = new sym.models.AccountRestrictionFlags(f);
 //16388:AllowOutgoingAddress: 0_allow     + 16384_outgoing + 4_transaction_type 
 //49156:BlockOutgoingAddress: 32768_block + 16384_outgoing + 4_transaction_type 
 
+//AccountOperationRestrictionTransaction
 tx = operestx(flags,[m.TransactionType.ACCOUNT_OPERATION_RESTRICTION.value],[])
 hash = await sigan(tx,dave)
 clog(hash)
 ```
-
-
-- 
 
 ### 確認
 ```js
 await api(`/restrictions/account/${dave.address}`)
 ```
 
-### 解除
-
-- 5.モザイク のスクリプトを実行しておいてください。
-
 ### グローバルモザイク制限
-```js
 
+#### 事前準備
+```js
 ellen = newacnt()
-tx = trftx(ellen.address,[mosaic(xymid,60_000000n)],"")// 52XYM
+tx = trftx(ellen.address,[mosaic(xymid,60_000000n)],"")// 52XYM以上
 hash = await sigan(tx,alice)
 clog(hash)
-
 ```
 #### モザイク作成
 ```js
@@ -165,8 +165,6 @@ txes = [
 aggtx = aggcptx(txes,ellen.publicKey,0);
 hash = await sigcosan(aggtx,ellen,[])
 clog(hash);
-
-
 ```
 
 - mosglorestx
@@ -196,14 +194,12 @@ clog(hash)
     - (mosaicId, restrictionKey, previousRestrictionValue, newRestrictionValue, targetAddress)
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.descriptors.MosaicAddressRestrictionTransactionV1Descriptor.html
 
-
 ### 確認
 ```js
 hex = mosid.toString(16)
 info = await api("/restrictions/mosaic?mosaicId=" + hex)
 info.data
 ```
-
 
 ### 送信テスト
 
