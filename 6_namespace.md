@@ -208,8 +208,9 @@ await api("/namespaces/" + nstohex("kicnft_test.mosaic"))
 ### 未解決アドレスとして使用
 ```js
 adr = nstoadr("kicnft_test.address")
-tx5 = trftx(adr,[],'');
-hash = await sigan(tx5,alice);
+//TransferTransaction
+tx = trftx(adr,[],'');
+hash = await sigan(tx,alice);
 clog(hash);
 ```
 
@@ -219,8 +220,9 @@ clog(hash);
 ### 未解決モザイクIDとして使用
 ```js
 mosid = nstohex("kicnft_test.mosaic")
-tx6 = trftx(alice.address,[mosaic(mosid,1)],'');
-hash = await sigan(tx6,alice);
+//TransferTransaction
+tx = trftx(alice.address,[mosaic(mosid,1)],'');
+hash = await sigan(tx,alice);
 clog(hash);
 ```
 ##### Script
