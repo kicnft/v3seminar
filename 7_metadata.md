@@ -89,11 +89,6 @@ function metaquery(addressOrId,sourceAddress,scopedMetadataKey,metadataType){
 }
 
 ```
-  "targetId": targetMosaic.toString(16).toUpperCase(),
-  "sourceAddress": targetAddress.toString(),
-  "scopedMetadataKey": key.toString(16).toUpperCase(),
-  "metadataType": 1
-
 
 ## 演習
 
@@ -119,7 +114,7 @@ hash = await sigcosan(aggtx,alice,[])
 clog(hash);
 ```
 
-### 確認
+#### 確認
 ```js
 dec = new TextDecoder()
 info = await api("/metadata?" + query.toString())
@@ -158,7 +153,7 @@ hash = await sigcosan(aggtx,alice,[])
 clog(hash);
 ```
 
-### 確認
+#### 確認
 ```js
 dec = new TextDecoder()
 info = await api("/metadata?" + query.toString())
@@ -194,7 +189,7 @@ hash = await sigcosan(aggtx,alice,[])
 clog(hash);
 ```
 
-### 確認
+#### 確認
 ```js
 dec = new TextDecoder()
 info = await api("/metadata?" + query.toString())
