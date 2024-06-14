@@ -2,6 +2,15 @@
 
 Symbolは、ブロックに関連する大量のデータを保存するためにツリー構造を使用しています。このデータはブロックヘッダーから直接取得することはできません。これにより、軽量クライアントが台帳全体の履歴を要求することなく、要素（例：トランザクション、レシートステートメント）が存在するかどうかを検証することができます。
 
+## 演習内容
+
+- トランザクションの検証
+- ブロックヘッダーの検証
+- ステートの検証
+- アカウントの検証
+- シークレットロックの検証
+- メタデータの検証
+
 ## スクリプト
 ```js
 function hexToUint8(hex) {
@@ -163,7 +172,7 @@ if(block.type === 33347){//importance block
 
 hash = uint8ToHex(hasher.digest());
 ```
-### stateHashの検証
+### ステートハッシュの検証
 ```js
 hasher = sha3_256.create();
 hasher.update(hexToUint8(info.meta.stateHashSubCacheMerkleRoots[0])); //AccountState
