@@ -133,18 +133,17 @@ clog(phash)
 phash = await cosan(aggtx,carol3)
 clog(phash)
 ```
+
+##### Script
+- cosan ( aggregateTx, cosigner )
+
 #### 確認
 ```js
 info = await api("/transactions/confirmed/" + phash)
 info.transaction.transactions[0].transaction.signerPublicKey
 ```
 
-##### Script
-- aggbdtx ( transactions, initPublicKey, cosignatureCount )
-- sig ( tx, signer, cosigners[] )
-- hlocktx
-- sigan
-- cosan
+
 
 ##### API
 - /transactions/partial
