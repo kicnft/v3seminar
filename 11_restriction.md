@@ -70,7 +70,7 @@ sha3_256 = (await import('https://cdn.skypack.dev/@noble/hashes/sha3')).sha3_256
 ## 演習
 ### アカウント制限
 
-### 事前準備
+#### 事前準備
 ```js
 dave = newacnt()
 tx = trftx(dave.address,[mosaic(xymid,100_000000n)],'');
@@ -78,7 +78,7 @@ hash = await sigan(tx,alice);
 clog(hash);
 ```
 
-### アカウント-アドレス制限
+#### アカウント-アドレス制限
 ```js
 bob = newacnt()
 
@@ -95,7 +95,7 @@ hash = await sigan(tx,dave)
 clog(hash)
 ```
 
-### アカウント-モザイク制限
+#### アカウント-モザイク制限
 ```js
 f = 2 + 32768 //BlockMosaicId
 flags = new sym.models.AccountRestrictionFlags(f);
@@ -108,7 +108,7 @@ hash = await sigan(tx,dave)
 clog(hash)
 ```
 
-### アカウント-操作制限
+#### アカウント-操作制限
 ```js
 f = 4 + 16384 //AllowOutgoingTransactionType
 flags = new sym.models.AccountRestrictionFlags(f);
@@ -121,21 +121,21 @@ hash = await sigan(tx,dave)
 clog(hash)
 ```
 
-### 確認
+#### 確認
 ```js
 await api(`/restrictions/account/${dave.address}`)
 ```
 
 ### グローバルモザイク制限
 
-### 事前準備１（アカウント作成）
+#### 事前準備１（アカウント作成）
 ```js
 ellen = newacnt()
 tx = trftx(ellen.address,[mosaic(xymid,60_000000n)],"")// 52XYM以上
 hash = await sigan(tx,alice)
 clog(hash)
 ```
-### 制限モザイク作成
+#### 制限モザイク作成
 ```js
 mosnc = nonce()
 mosid = sym.generateMosaicId(ellen.address, mosnc)
@@ -175,7 +175,7 @@ clog(hash);
 - MosaicRestrictionType
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.MosaicRestrictionType.html
 
-### アカウント適格情報設定
+#### アカウント適格情報設定
 ```js
 frank = newacnt()
 
@@ -195,14 +195,14 @@ clog(hash)
 
 - mosadrrestx ( mosaicId, restrictionKey, previousRestrictionValue, newRestrictionValue, targetAddress )
 
-### 確認
+#### 確認
 ```js
 hex = mosid.toString(16)
 info = await api("/restrictions/mosaic?mosaicId=" + hex)
 info.data
 ```
 
-### 送信テスト
+#### 送信テスト
 
 ellen -> aliceに送信：失敗
 ```js
