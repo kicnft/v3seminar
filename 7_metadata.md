@@ -9,7 +9,13 @@ Symbolは、カスタムデータをアカウント、モザイク、または�
 メタデータは、{署名者、ターゲットID、メタデータキー}のタプルによって一意に識別されます。この複合識別子に署名者を含めることで、複数のアカウントが同じメタデータを競合なく指定できるようになります。
 識別子にリンクされた値は最大1024文字の文字列です。
 
+https://docs.symbol.dev/concepts/metadata.html
+
 ## 演習内容
+- アドレスへの登録と確認
+- モザイクへの登録と確認
+- ネームスペースへの登録と確認
+
 
 ## スクリプト
 ```js
@@ -50,7 +56,7 @@ console.log("nsmetatx")
 }
 
 function updvalue(info,value){
-console.log("updvalue")
+
     const encodedValue = new TextEncoder().encode(value)
     const delta = encodedValue.length
     const res = {}
@@ -89,21 +95,21 @@ function metaquery(addressOrId,sourceAddress,scopedMetadataKey,metadataType){
 }
 
 ```
-
+    
 ## 演習
 
 ### アドレスに登録
 ```js
-console.log("metadata")
 tgtadr = alice.address;  // メタデータ記録先アドレス
 srcadr = alice.address;  // メタデータ作成者アドレス
 
 key = sym.metadataGenerateKey("key_account")
 query = metaquery(tgtadr,srcadr,key,0)
 info = await api("/metadata?" + query.toString())
-value = "updatedtest";
+value = "test";
 
 dtvalue = updvalue(info,value);
+//AccountMetadataTransaction
 tx = acntmetatx(tgtadr,key,dtvalue);
 txes = [
     embed(tx,alice.publicKey),
@@ -113,6 +119,20 @@ aggtx = aggcptx(txes,alice.publicKey,0);
 hash = await sigcosan(aggtx,alice,[])
 clog(hash);
 ```
+##### Script
+- metaquery ( addressOrId, sourceAddress, scopedMetadataKey, metadataType )
+- updvalue( info, value )
+- acntmetatx ( targetAddress,key,sizeDeltaAndValueMap )
+
+##### API
+- /metadata
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Metadata-routes/operation/getMetadataMerkle
+
+##### SDK
+- metadataGenerateKey
+    -  https://symbol.github.io/symbol/sdk/javascript/functions/symbol.metadataGenerateKey.html
+- metadataUpdateValue *Script内部で使用
+    - https://symbol.github.io/symbol/sdk/javascript/functions/symbol.metadataUpdateValue.html
 
 #### 確認
 ```js
@@ -140,7 +160,7 @@ srcadr = alice.address;  // メタデータ作成者アドレス
 key = sym.metadataGenerateKey("key_mosaic")
 query = metaquery(mosid,srcadr,key,1)
 info = await api("/metadata?" + query.toString())
-value = "updated test";
+value = "test";
 
 dtvalue = updvalue(info,value);
 tx = mosmetatx(tgtadr,key,mosid,dtvalue);
