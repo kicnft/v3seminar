@@ -14,19 +14,22 @@ https://docs.symbol.dev/guides/aggregate/adding-cosginatures-aggregate-complete.
 
 ## スクリプト
 ```js
-function sig(aggregateTx,signer){
+function sig(aggregateTransaction,signer){
 
-    const signature = signer.signTransaction(aggregateTx);
-    const requestBody = sym.SymbolTransactionFactory.attachSignature(aggregateTx, signature);
-    const hash = chain.hashTransaction(aggregateTx).toString();
+    const signature = signer.signTransaction(aggregateTransaction);
+    const requestBody = sym.SymbolTransactionFactory.attachSignature(aggregateTransaction, signature);
+    const hash = chain.hashTransaction(aggregateTransaction).toString();
     return {request:JSON.parse(requestBody),hash:hash}
 }
 
+console.log("Import Offline Signature Script")
+```
+
+### 事前準備
+```js
 bob = newacnt()
 console.log(`bob address: ${bob.address}`)
 console.log(`bob private key: ${bob.keyPair.privateKey}`)
-
-console.log("Import Offline Signature Script")
 ```
 
 ### トランザクション作成
