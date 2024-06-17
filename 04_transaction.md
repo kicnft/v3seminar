@@ -123,6 +123,7 @@ clog(hash);
         - code
             - ResourceNotFound
 
+### トランザクション検索
 #### ハッシュ値検索
 ```js
 info = await api("/transactions/confirmed/" + hash)
