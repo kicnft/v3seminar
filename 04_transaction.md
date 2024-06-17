@@ -144,14 +144,11 @@ sym.models.TransactionType.TRANSFER
 #### タイムスタンプ
 ```js
 meta.timestamp
+new Date(epochAdjustment * 1000)
 new Date(epochAdjustment * 1000 + Number(meta.timestamp))
 ```
 ##### Script
 - epochAdjustment
-
-##### API
-- /network/properties
-    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Network-routes/operation/getNetworkProperties 
 
 #### メッセージ変換
 ```js
@@ -161,7 +158,6 @@ u.hexToUint8(tx.message).slice(1)
 td = new TextDecoder()
 td.decode(u.hexToUint8(txinfo.message).slice(1))
 ```
-
 ##### SDK
 - utils.hexToUint8
   - https://symbol.github.io/symbol/sdk/javascript/functions/index.utils.hexToUint8.html 
