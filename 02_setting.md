@@ -142,8 +142,8 @@ function trftx(address,mosaics,message){
 }
 
 //署名＆通知 sign and announce
-async function sigan(desc,signer){
-    const tx = chain.createTransactionFromTypedDescriptor(desc,signer.publicKey,feeMultiplier,add2Hours);
+async function sigan(transaction,signer){
+    const tx = chain.createTransactionFromTypedDescriptor(transaction,signer.publicKey,feeMultiplier,add2Hours);
     txstat(tx);
 
     const signature = signer.signTransaction(tx);
@@ -162,8 +162,8 @@ async function sigan(desc,signer){
 }
 
 //埋め込みトランザクション
-function embed(tx,pubkey){
-    return chain.createEmbeddedTransactionFromTypedDescriptor(tx,pubkey);
+function embed(transaction,publicKey){
+    return chain.createEmbeddedTransactionFromTypedDescriptor(transaction,publicKey);
 }
 
 //アグリゲートコンプリートトランザクション aggregate complete transaction
@@ -175,22 +175,22 @@ function aggcptx(transactions,initPublicKey,cosignatureCount){
 }
 
 //署名＆連署＆通知 sign and cosign and announce
-async function sigcosan(tx,signer,cosigners){
+async function sigcosan(aggregateTransaction,signer,cosigners){
 
     //署名
-    const signature = signer.signTransaction(tx);
-    sym.SymbolTransactionFactory.attachSignature(tx, signature);
+    const signature = signer.signTransaction(aggregateTransaction);
+    sym.SymbolTransactionFactory.attachSignature(aggregateTransaction, signature);
 
     //連署
     for(cosigner of cosigners){
-        const cosignature = cosigner.cosignTransaction(tx);
+        const cosignature = cosigner.cosignTransaction(aggregateTransaction);
         tx.cosignatures.push(cosignature);
     }
-    txstat(tx);
+    txstat(aggregateTransaction);
 
     //通知
-    const requestBody = sym.SymbolTransactionFactory.attachSignature(tx, tx.signature);
-    const hash = chain.hashTransaction(tx).toString();
+    const requestBody = sym.SymbolTransactionFactory.attachSignature(aggregateTransaction, aggregateTransaction.signature);
+    const hash = chain.hashTransaction(aggregateTransaction).toString();
     const res = await fetch(
       new URL('/transactions', node),
       {
