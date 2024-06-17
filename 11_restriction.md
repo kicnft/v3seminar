@@ -134,6 +134,9 @@ await api(`/restrictions/account/${dave.address}`)
 ### グローバルモザイク制限
 
 #### 事前準備
+
+[5.モザイク](05_mosaic.md) のスクリプトを実行しておいてください。
+
 ```js
 ellen = newacnt()
 tx = trftx(ellen.address,[mosaic(xymid,60_000000n)],"")// 52XYM以上
