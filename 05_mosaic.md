@@ -15,15 +15,6 @@ https://docs.symbol.dev/ja/concepts/mosaic.html
 
 
 ```js
-//モザイクトークン（hexID,数量）
-function mosaic(mosaicId,amount){
-    const mosaicNumber = typeof value === 'string' ? BigInt("0x" + mosaicId) : mosaicId;
-    return new sym.descriptors.UnresolvedMosaicDescriptor(
-        new sym.models.UnresolvedMosaicId(mosaicNumber), 
-        new sym.models.Amount(amount)
-    )
-}
-
 function nonce() {
     const buffer = new ArrayBuffer(sym.models.MosaicNonce.SIZE);
     const view = new DataView(buffer);
