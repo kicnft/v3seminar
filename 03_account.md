@@ -108,9 +108,6 @@ async function deckey(hexSalt, hexIV, hexCiphertext, password) {
     const salt = core.utils.hexToUint8(hexSalt)
     const iv =	core.utils.hexToUint8(hexIV)
     const ciphertext = 	core.utils.hexToUint8(hexCiphertext)
-  
-    
-    
     const iterations = 310000; // 推奨される最低回数
     const keyLength = 256; // 256ビット
     const derivedKey = await deriveKey(password, salt, iterations, keyLength);
@@ -149,7 +146,8 @@ alice = newacnt()
 - SymbolAccount
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolAccount.html
 
-### アドレス表示
+### アカウント情報表示
+#### アドレス表示
 ```js
 alice.address.toString()
 ```
@@ -158,7 +156,7 @@ alice.address.toString()
 - Address
     - https://symbol.github.io/symbol/sdk/javascript/classes/nem.models.Address.html
 
-### 秘密鍵表示
+#### 秘密鍵表示
 ```js
 alice.keyPair.privateKey.toString()
 ```
@@ -169,14 +167,15 @@ alice.keyPair.privateKey.toString()
 - PrivateKey
     - https://symbol.github.io/symbol/sdk/javascript/classes/index.PrivateKey.html
 
-### アカウント再作成
+### アカウント復元
+#### アカウント再作成
 ```js
 alice = newacnt()
 alice.address.toString()
 alice.keyPair.privateKey.toString()
 ```
 
-### アカウント復元
+#### 秘密鍵を指定してアカウントを復元
 ```js
 alice = acnt("1BEE48A5F3E34BF5AD55072106C1D2CE2D28C1D6926EE824E010C745AC3B9EF3")
 alice.address.toString()
