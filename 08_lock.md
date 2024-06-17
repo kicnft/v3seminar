@@ -82,6 +82,7 @@ async function cosan(aggregateTx,cosigner){
     console.log(res)
     return cosignature.parentHash.toString();
 }
+console.log("Import Lock Script")
 ```
 
 ## 演習
