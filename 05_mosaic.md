@@ -102,20 +102,22 @@ clog(hash);
 - MosaicSupplyChangeAction
     - https://symbol.github.io/symbol/sdk/javascript/classes/nem.models.MosaicSupplyChangeAction.html 
 
-### モザイクID一覧
+### モザイクの確認
+
+#### モザイクID一覧
 ```js
 acntinfo = await api("/accounts/" + alice.address)
 for(mos of acntinfo.account.mosaics){
     console.log(mos.id)
 }
 ```
-### モザイクID変換
+#### モザイクID変換
 ```js
 mosid
 mosid.toString(16)
 mosid.toString(16).toUpperCase()
 ```
-### モザイク一覧
+#### モザイク一覧
 ```js
 acntinfo = await api("/accounts/" + alice.address)
 for(mos of acntinfo.account.mosaics){
