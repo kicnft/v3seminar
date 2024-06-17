@@ -150,7 +150,7 @@ clog(hash);
 - subnsregtx ( name, parentName )
 
 
-### リンク
+### ネームスペースのリンク
 #### アドレスにリンク
 ```js
 nsid = nstohex("kicnft_test.address")
@@ -189,7 +189,7 @@ clog(hash);
 - nstohex ( name ) //ネームスペースを16進数文字列に変換
 - mosalitx ( hexNamespaceId, hexMosaicId, aliasAction )
 
-### 確認
+### ネームスペースの確認
 ```js
 nstohex("kicnft_test")
 await api("/namespaces/" + nstohex("kicnft_test"))
@@ -204,8 +204,8 @@ await api("/namespaces/" + nstohex("kicnft_test.mosaic"))
 ##### Script
 - nstohex ( name ) //ネームスペースを16進数文字列に変換
 
-
-### 未解決アドレスとして使用
+### ネームスペースの使用
+#### 未解決アドレスとして使用
 ```js
 adr = nstoadr("kicnft_test.address")
 //TransferTransaction
@@ -217,7 +217,7 @@ clog(adrhash);
 ##### Script
 - nstoadr ( name )　//ネームスペースをアドレスに変換
 
-### 未解決モザイクIDとして使用
+#### 未解決モザイクIDとして使用
 ```js
 mosid = nstohex("kicnft_test.mosaic")
 //TransferTransaction
