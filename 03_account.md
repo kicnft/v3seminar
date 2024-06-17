@@ -6,6 +6,14 @@
 
 https://docs.symbol.dev/concepts/account.html
 
+## 演習内容
+- アカウント生成
+- アカウント情報表示
+- アカウント復元
+- アカウント検索
+- テキスト暗号化
+- 鍵暗号化
+  
 ## スクリプト
 ```js
 //アカウント新規作成　new account
@@ -161,7 +169,7 @@ alice.keyPair.privateKey.toString()
 - PrivateKey
     - https://symbol.github.io/symbol/sdk/javascript/classes/index.PrivateKey.html
 
-### 再作成
+### アカウント再作成
 ```js
 alice = newacnt()
 alice.address.toString()
