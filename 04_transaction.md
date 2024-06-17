@@ -123,17 +123,6 @@ clog(hash);
         - code
             - ResourceNotFound
 
-##### SDK
-- TransferTransactionV1Descriptor
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.descriptors.TransferTransactionV1Descriptor.html
-- createTransactionFromTypedDescriptor
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#createTransactionFromTypedDescriptor
-- attachSignature
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolTransactionFactory.html#attachSignature
-- hashTransaction
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#hashTransaction
-
-
 #### ハッシュ値検索
 ```js
 info = await api("/transactions/confirmed/" + hash)
