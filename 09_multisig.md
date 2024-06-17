@@ -36,6 +36,7 @@ async function cosan(aggregateTx,cosigner){
     console.log(res)
     return cosignature.parentHash.toString();
 }
+console.log("Import Multisig Script")
 ```
 ## 演習
 ### 準備
