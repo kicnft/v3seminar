@@ -52,6 +52,7 @@ function connectWebSocket(targetNode) {
         socket.onerror = function () {reject(new Error("Failed to connect to the WebSocket"));};
     });
 }
+console.log("Import Observer Script")
 ```
 
 ### 接続
