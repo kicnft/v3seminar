@@ -89,6 +89,8 @@ function nstohex(name){
     const namespaceNumber = sym.generateNamespacePath(name).pop()
     return  namespaceNumber.toString(16).toUpperCase()  
 }
+
+console.log("Import Namespace Script")
 ```
 
 ## 演習
