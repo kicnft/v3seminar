@@ -133,7 +133,7 @@ await api(`/restrictions/account/${dave.address}`)
 
 ### グローバルモザイク制限
 
-#### 事前準備１（アカウント作成）
+#### 事前準備
 ```js
 ellen = newacnt()
 tx = trftx(ellen.address,[mosaic(xymid,60_000000n)],"")// 52XYM以上
@@ -161,6 +161,14 @@ tx2 = mossctx(mosid,1000,1)
 key = sym.metadataGenerateKey("KYC"); // restrictionKey 
 //MosaicGlobalRestrictionTransaction
 tx3 = mosglorestx(mosid,0,key,0n,1n,0,1)
+//MosaicRestrictionType
+//0:NONE
+//1:EQ
+//2:NE
+//3:LT
+//4:LE
+//5:GT
+//6:GE
 
 txes = [
     embed(tx1,ellen.publicKey),
