@@ -70,6 +70,8 @@ function moshex(moshex){
 
 negkey = 0xFFFFFFFFFFFFFFFFn
 sha3_256 = (await import('https://cdn.skypack.dev/@noble/hashes/sha3')).sha3_256;
+
+console.log("Import Restriction Script")
 ```
 
 ## 演習
