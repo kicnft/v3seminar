@@ -42,9 +42,13 @@ function mosmetatx(targetAddress,key,targetMosaic,sizeDeltaAndValueMap){
     return descriptor
 }
 
+function nstohex(name){
+    const namespaceNumber = sym.generateNamespacePath(name).pop()
+    return  namespaceNumber.toString(16).toUpperCase()  
+}
+
 //NamespaceMetadataTransaction
 function nsmetatx(targetAddress,key,targetNamespace,sizeDeltaAndValueMap){
-console.log("nsmetatx")
     const descriptor = new sym.descriptors.NamespaceMetadataTransactionV1Descriptor(
         targetAddress,  // ターゲットアドレス
         key,            // キー
