@@ -124,7 +124,7 @@ clog(hash);
             - ResourceNotFound
 
 ### トランザクション検索
-#### ハッシュ値検索
+#### ハッシュ値で検索
 ```js
 info = await api("/transactions/confirmed/" + hash)
 meta = info.meta
@@ -137,6 +137,7 @@ tx.type.value
 sym.models.TransactionType.valueToKey(tx.type.value)
 sym.models.TransactionType.TRANSFER
 ```
+##### SDK
 - TransactionType
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.TransactionType.html
 
@@ -145,7 +146,6 @@ sym.models.TransactionType.TRANSFER
 meta.timestamp
 new Date(epochAdjustment * 1000 + Number(meta.timestamp))
 ```
-
 ##### Script
 - epochAdjustment
 
