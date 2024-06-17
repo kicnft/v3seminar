@@ -10,8 +10,9 @@ https://docs.symbol.dev/concepts/data-validation.html
 - ブロックヘッダーの検証
 - ステートの検証
 - アカウントの検証
-- シークレットロックの検証
 - メタデータの検証
+- シークレットロックの検証
+
 
 ## スクリプト
 ```js
@@ -275,48 +276,6 @@ checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
 ##### API
 - /accounts/{accountId}/merkle
   - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Account-routes/operation/getAccountInfoMerkle
-### シークレットロックの検証
-
-```js
-bytes = new Uint8Array([
-...new Uint8Array((new Uint16Array([lockInfo.version])).buffer),
-...hexToUint8(lockInfo.ownerAddress),
-...hexToUint8(lockInfo.mosaicId).reverse(),
-...new Uint8Array((new BigInt64Array([BigInt(lockInfo.amount)])).buffer),
-...new Uint8Array((new BigInt64Array([BigInt(lockInfo.endHeight)])).buffer),
-...new Uint8Array([lockInfo.status]),
-...new Uint8Array([lockInfo.hashAlgorithm]),
-...hexToUint8(lockInfo.secret),
-...hexToUint8(lockInfo.recipientAddress)
-]);
-
-hasher = sha3_256.create();
-aliceStateHash = uint8ToHex(hasher.update(bytes).digest());
-
-bytes = new Uint8Array([
-...hexToUint8(lockInfo.secret),
-...hexToUint8(lockInfo.recipientAddress)
-]);
-
-hasher = sha3_256.create();
-secretStateHash = uint8ToHex(hasher.update(bytes).digest());
-stateProof = await api(`/lock/secret/${secretStateHash}/merkle` )
-
-blockInfo = await api("/blocks?order=desc");
-rootHash = blockInfo.data[0].meta.stateHashSubCacheMerkleRoots[5];
-
-hasher = sha3_256.create();
-bytes = new Uint8Array(hexToUint8(secretStateHash));
-alicePathHash = uint8ToHex(hasher.update(bytes).digest());
-
-checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
-```
-##### Script
-- checkState ( stateProof, stateHash, pathHash, rootHash )
-
-##### API
-- /lock/secret/{compositeHash}/merkle
-  - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Secret-Lock-routes/operation/getSecretLockMerkle
 
 ### メタデータの検証
 ```js
@@ -367,3 +326,47 @@ checkState(stateProof,stateHash,pathHash,rootHash);
 ##### API
 - /metadata/{compositeHash}/merkle
   - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Metadata-routes/operation/getMetadataMerkle
+
+
+### シークレットロックの検証
+
+```js
+bytes = new Uint8Array([
+...new Uint8Array((new Uint16Array([lockInfo.version])).buffer),
+...hexToUint8(lockInfo.ownerAddress),
+...hexToUint8(lockInfo.mosaicId).reverse(),
+...new Uint8Array((new BigInt64Array([BigInt(lockInfo.amount)])).buffer),
+...new Uint8Array((new BigInt64Array([BigInt(lockInfo.endHeight)])).buffer),
+...new Uint8Array([lockInfo.status]),
+...new Uint8Array([lockInfo.hashAlgorithm]),
+...hexToUint8(lockInfo.secret),
+...hexToUint8(lockInfo.recipientAddress)
+]);
+
+hasher = sha3_256.create();
+aliceStateHash = uint8ToHex(hasher.update(bytes).digest());
+
+bytes = new Uint8Array([
+...hexToUint8(lockInfo.secret),
+...hexToUint8(lockInfo.recipientAddress)
+]);
+
+hasher = sha3_256.create();
+secretStateHash = uint8ToHex(hasher.update(bytes).digest());
+stateProof = await api(`/lock/secret/${secretStateHash}/merkle` )
+
+blockInfo = await api("/blocks?order=desc");
+rootHash = blockInfo.data[0].meta.stateHashSubCacheMerkleRoots[5];
+
+hasher = sha3_256.create();
+bytes = new Uint8Array(hexToUint8(secretStateHash));
+alicePathHash = uint8ToHex(hasher.update(bytes).digest());
+
+checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
+```
+##### Script
+- checkState ( stateProof, stateHash, pathHash, rootHash )
+
+##### API
+- /lock/secret/{compositeHash}/merkle
+  - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Secret-Lock-routes/operation/getSecretLockMerkle
