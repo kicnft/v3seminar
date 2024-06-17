@@ -93,7 +93,7 @@ function metaquery(addressOrId,sourceAddress,scopedMetadataKey,metadataType){
     }
     return query;
 }
-
+console.log("Import Metadata Script")
 ```
     
 ## 演習
