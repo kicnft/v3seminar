@@ -16,15 +16,6 @@ Symbolは、資産の分散型交換のために信頼のない環境を作り�
 ## スクリプト
 
 ```js
-function mosaic(mosaicId,amount){
-console.log("mosaic")
-    const mosaicNumber = typeof mosaicId === 'string' ? BigInt("0x" + mosaicId) : mosaicId;
-    return new sym.descriptors.UnresolvedMosaicDescriptor(
-        new sym.models.UnresolvedMosaicId(mosaicNumber), 
-        new sym.models.Amount(amount)
-    )
-}
-
 //アグリゲートボンデッドトランザクション aggregate bobded transaction
 function aggbdtx(transactions,initPublicKey,cosignatureCount){
     const transactionsHash = sym.SymbolFacade.hashEmbeddedTransactions(transactions);
