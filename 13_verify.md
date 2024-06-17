@@ -272,6 +272,9 @@ checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
 ##### Script
 - checkState ( stateProof, stateHash, pathHash, rootHash )
 
+##### API
+- /accounts/{accountId}/merkle
+  - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Account-routes/operation/getAccountInfoMerkle
 ### シークレットロックの検証
 
 ```js
@@ -306,12 +309,14 @@ hasher = sha3_256.create();
 bytes = new Uint8Array(hexToUint8(secretStateHash));
 alicePathHash = uint8ToHex(hasher.update(bytes).digest());
 
-
 checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
 ```
 ##### Script
 - checkState ( stateProof, stateHash, pathHash, rootHash )
 
+##### API
+- /lock/secret/{compositeHash}/merkle
+  - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Secret-Lock-routes/operation/getSecretLockMerkle
 
 ### メタデータの検証
 ```js
@@ -358,3 +363,7 @@ checkState(stateProof,stateHash,pathHash,rootHash);
 ```
 ##### Script
 - checkState ( stateProof, stateHash, pathHash, rootHash )
+
+##### API
+- /metadata/{compositeHash}/merkle
+  - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Metadata-routes/operation/getMetadataMerkle
