@@ -1,7 +1,6 @@
 # 環境設定
 
 ## SDK
-
 - Symbol-SDK
     - npm
         - https://www.npmjs.com/package/symbol-sdk
@@ -13,22 +12,21 @@ bundle = await import("https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js
 ```
 
 ## リファレンス
-
 - Catapult REST Endpoints (1.0.3)
     - https://symbol.github.io/symbol-openapi/v1.0.3/
-
 - symbol-sdk - v3.2.2
     - https://symbol.github.io/symbol/sdk/javascript/index.html
 
-
 ## ノード選択
-
 - テストネット
     - https://symbolnodes.org/nodes_testnet/
 - メインネット
     - https://symbolnodes.org/nodes/
 
 ## 共通スクリプト
+Chromeブラウザなどで開発者コンソールを開き以下の共通スクリプトをコピーペーストしてください。
+共通スクリプトで使用する関数名はSDKで提供される関数と区別しやすいように、大文字なしの省略形で構成しています。
+
 ```js
 //NETWORK
 node = window.origin;
