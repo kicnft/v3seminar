@@ -58,6 +58,8 @@ function mossctx(mosaicId,amount,mosaicSupplyChangeAction){
 ```
 
 ## 演習
+
+### モザイクの作成
 ```js
 mosnc = nonce()
 mosid = sym.generateMosaicId(alice.address, mosnc)
@@ -107,16 +109,12 @@ for(mos of acntinfo.account.mosaics){
     console.log(mos.id)
 }
 ```
-
-
 ### モザイクID変換
 ```js
 mosid
 mosid.toString(16)
 mosid.toString(16).toUpperCase()
 ```
-
-
 ### モザイク一覧
 ```js
 acntinfo = await api("/accounts/" + alice.address)
