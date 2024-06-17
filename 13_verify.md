@@ -89,6 +89,7 @@ function checkState(stateProof,stateHash,pathHash,rootHash){
   console.log(treePathHash === pathHash);
 }
 
+console.log("Import Verify Script")
 ```
 ## 演習
 
