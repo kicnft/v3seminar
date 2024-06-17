@@ -53,34 +53,6 @@ function aggcptx(transactions,initPublicKey,cosignatureCount){
     return tx;
 }
 
-//署名＆連署＆通知 sign and cosign and announce
-async function sigcosan(tx,signer,cosigners){
-
-    //署名
-    const signature = signer.signTransaction(tx);
-    sym.SymbolTransactionFactory.attachSignature(tx, signature);
-
-    //連署
-    for(cosigner of cosigners){
-        const cosignature = cosigner.cosignTransaction(tx);
-        tx.cosignatures.push(cosignature);
-    }
-    txstat(tx);
-
-    //通知
-    const requestBody = sym.SymbolTransactionFactory.attachSignature(tx, tx.signature);
-    const hash = chain.hashTransaction(tx).toString();
-    const res = await fetch(
-      new URL('/transactions', node),
-      {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: requestBody,
-      }
-    );
-    console.log(res);
-    return hash;
-}
 console.log("Import Transaction Script")
 
 ```
