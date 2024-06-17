@@ -14,8 +14,9 @@ https://docs.symbol.dev/concepts/namespace.html
 - 登録内容の確認
 - 未解決アドレスとして使用
 - 未解決モザイクとして使用
-- 逆引き
 - 名前解決の確認
+- 逆引き
+
 
 ## スクリプト
 ```js
