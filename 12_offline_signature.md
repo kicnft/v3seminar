@@ -25,6 +25,8 @@ function sig(aggregateTx,signer){
 bob = newacnt()
 console.log(`bob address: ${bob.address}`)
 console.log(`bob private key: ${bob.keyPair.privateKey}`)
+
+console.log("Import Offline Signature Script")
 ```
 
 ### トランザクション作成
