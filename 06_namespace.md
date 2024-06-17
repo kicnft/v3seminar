@@ -89,16 +89,6 @@ function nstohex(name){
     const namespaceNumber = sym.generateNamespacePath(name).pop()
     return  namespaceNumber.toString(16).toUpperCase()  
 }
-
-function mosaic(mosaicId,amount){
-console.log("mosaic")
-    const mosaicNumber = typeof mosaicId === 'string' ? BigInt("0x" + mosaicId) : mosaicId;
-    return new sym.descriptors.UnresolvedMosaicDescriptor(
-        new sym.models.UnresolvedMosaicId(mosaicNumber), 
-        new sym.models.Amount(amount)
-    )
-}
-
 ```
 
 ## 演習
