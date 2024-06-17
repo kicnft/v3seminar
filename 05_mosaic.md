@@ -121,7 +121,7 @@ for(mos of acntinfo.account.mosaics){
  
 ### モザイク送信
 ```js
-tx = trftx(alice.address,[mosaic("71261F9C04C09144",1)],'');
+tx = trftx(alice.address,[mosaic(mosid ,1)],'');
 hash = await sigan(tx,alice);
 clog(hash);
 ```
