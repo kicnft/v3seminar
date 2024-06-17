@@ -45,6 +45,7 @@ function mossctx(mosaicId,amount,mosaicSupplyChangeAction){
     )
     return desc
 }
+console.log("Import Mosaic Script")
 ```
 
 ## 演習
