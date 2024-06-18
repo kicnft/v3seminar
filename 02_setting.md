@@ -24,6 +24,7 @@ bundle = await import("https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js
     - https://symbolnodes.org/nodes/
 
 ## 共通スクリプト
+この後の章で紹介する各機能の動作を確認する時に、事前に読み込んでおく必要のあるスクリプトです。
 Chromeブラウザなどで開発者コンソールを開き以下の共通スクリプトをコピーペーストしてください。
 共通スクリプトで使用する関数名はSDKで提供される関数と区別しやすいように、大文字なしの省略形で構成しています。
 
