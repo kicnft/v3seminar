@@ -16,17 +16,6 @@ https://docs.symbol.dev/concepts/account.html
   
 ## スクリプト
 ```js
-//アカウント新規作成　new account
-function newacnt(){
-    const prikey = core.PrivateKey.random()
-    return chain.createAccount(prikey)
-}
-
-//アカウント復元 account from private key string
-function acnt(prikeyString){
-    const prikey = new core.PrivateKey(prikeyString)
-    return chain.createAccount(prikey)
-}
 
 //テキスト暗号化 encode to hex from text string
 function enchex(sendPrikey,recvPubkey,message){
