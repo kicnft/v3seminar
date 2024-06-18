@@ -132,10 +132,17 @@ alice = newacnt()
 ```js
 alice.address.toString()
 ```
-
 ##### SDK
 - Address
     - https://symbol.github.io/symbol/sdk/javascript/classes/nem.models.Address.html
+
+#### 公開鍵表示
+```js
+alice.publicKey.toString()
+```
+##### SDK
+- PublicKey
+  - https://symbol.github.io/symbol/sdk/javascript/classes/index.PublicKey.html
 
 #### 秘密鍵表示
 ```js
