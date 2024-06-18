@@ -123,7 +123,7 @@ function newacnt(){
 
 //アカウント復元 account from private key string
 function acnt(privateKeyString){
-    const prikey = new core.PrivateKey(prikeyString)
+    const prikey = new core.PrivateKey(privateKeyString)
     return chain.createAccount(prikey)
 }
 
