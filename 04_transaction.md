@@ -89,8 +89,8 @@ clog(hash);
         - code
             - Success: 成功
             - Failure_Core_Insufficient_Balance: 残高不足エラー
-- /transactions/confirmed
-    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-routes/operation/searchConfirmedTransactions
+- /transactions/confirmed/{transactionId}
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-routes/operation/getConfirmedTransaction
         - {"meta":...,"transaction":...}
         - code
             - ResourceNotFound
