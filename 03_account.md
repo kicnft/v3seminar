@@ -194,7 +194,7 @@ decadr(info.account.address)
 ```
 ##### Script
 - await api ( path, method, body )
-- decadr　(　hexEncodedAddress )
+- decadr　( hexEncodedAddress )
 
 ##### API
 - /accounts/accounts/{accountId}
