@@ -60,6 +60,7 @@ console.log("Import Transaction Script")
 ## 演習
 
 ### 事前準備
+3.アカウントの章で新規作成したアカウントを復元してください。
 ```js
 alice = acnt("C9E741092833FEA79D7DB7DC839506BBEB6704631DB9B4D59C60A02BF6B0200C");
 "https://testnet.symbol.tools?recipient=" + alice.address
