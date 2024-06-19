@@ -64,7 +64,6 @@ function nstoadr(name){
 
 //ネームスペースを16進数アドレス文字列に変換
 function nstohexadr(name){
-    console.log("name")
     const namespaceNumber =  sym.generateNamespacePath(name).pop()
     const address = sym.Address.fromNamespaceId(
       new sym.models.NamespaceId(namespaceNumber),
