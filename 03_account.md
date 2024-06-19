@@ -172,6 +172,8 @@ alice.keyPair.privateKey.toString()
 ##### Script
 - acnt ( privateKeyString )
 
+**ここで復元したアカウントは以降の章でも引き続き使用します。メモ帳などに控えておいてください。**
+
 ### アカウント検索
 ```js
 bob = await acnt("C9E741092833FEA79D7DB7DC839506BBEB6704631DB9B4D59C60A02BF6B0200C")
