@@ -7,17 +7,6 @@
 
 https://docs.symbol.dev/concepts/namespace.html
 
-## 演習内容
-- レンタル手数料計算
-- ネームスペース作成
-- アドレスやモザイクへのリンク
-- 登録内容の確認
-- 未解決アドレスとして使用
-- 未解決モザイクとして使用
-- 名前解決の確認
-- 逆引き
-
-
 ## スクリプト
 ```js
 //NamespaceRegistrationTransaction(ROOT)
