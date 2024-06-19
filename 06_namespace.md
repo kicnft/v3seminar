@@ -113,7 +113,7 @@ clog(hash)
 ```
 
 ##### Script
-- neregtx( name, duration )
+- nsregtx( name, duration )
 
 #### サブネームスペースの作成
 ```js
