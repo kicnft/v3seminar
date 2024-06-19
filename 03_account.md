@@ -172,7 +172,10 @@ alice.keyPair.privateKey.toString()
 ##### Script
 - acnt ( privateKeyString )
 
+> [!NOTE]
 > ここで復元したアカウントは以降の章でも引き続き使用します。メモ帳などに控えておいてください。
+ 
+
 
 ### アカウント検索
 ```js
