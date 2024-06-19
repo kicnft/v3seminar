@@ -127,5 +127,13 @@ hash = await sigan(tx,alice);
 clog(hash);
 ```
 
+```js
+tx = trftx(alice.address,[mosaic(mosid ,1),mosaic(xymid,1)],'');
+hash = await sigan(tx,alice);
+clog(hash);
+```
+
+
 ##### Script
 - mosaic ( mosaicId, amount )
+- xymid
