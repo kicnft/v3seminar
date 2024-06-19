@@ -86,10 +86,10 @@ clog(hash);
 - mossctx ( mosaicId, amount, mosaicSupplyChangeAction )
 
 ##### SDK
-- MosaicFlags
-    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.MosaicFlags.html
 - generateMosaicId
     - https://symbol.github.io/symbol/sdk/javascript/functions/symbol.generateMosaicId.html
+- MosaicFlags
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.MosaicFlags.html
 - MosaicSupplyChangeAction
     - https://symbol.github.io/symbol/sdk/javascript/classes/nem.models.MosaicSupplyChangeAction.html 
 
