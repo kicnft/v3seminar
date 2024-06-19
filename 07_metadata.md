@@ -102,9 +102,9 @@ tgtadr = alice.address;  // メタデータ記録先アドレス
 srcadr = alice.address;  // メタデータ作成者アドレス
 
 key = sym.metadataGenerateKey("key_account")
+value = "test";
 query = metaquery(tgtadr,srcadr,key,0)
 info = await api("/metadata?" + query.toString())
-value = "test";
 
 dtvalue = updvalue(info,value);
 //AccountMetadataTransaction
