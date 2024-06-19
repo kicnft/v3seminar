@@ -205,7 +205,7 @@ async function sigcosan(aggregateTransaction,signer,cosigners){
 
 //モザイクトークン（hexID,数量）
 function mosaic(mosaicId,amount){
-    const mosaicNumber = typeof value === 'string' ? BigInt("0x" + mosaicId) : mosaicId;
+    const mosaicNumber = typeof mosaicId === 'string' ? BigInt("0x" + mosaicId) : mosaicId;
     return new sym.descriptors.UnresolvedMosaicDescriptor(
         new sym.models.UnresolvedMosaicId(mosaicNumber), 
         new sym.models.Amount(amount)
