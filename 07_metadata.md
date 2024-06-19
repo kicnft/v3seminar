@@ -124,7 +124,7 @@ clog(hash);
 
 ##### API
 - /metadata
-    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Metadata-routes/operation/getMetadataMerkle
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Metadata-routes/operation/searchMetadataEntries
 
 ##### SDK
 - metadataGenerateKey
