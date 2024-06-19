@@ -218,8 +218,13 @@ console.log("Good Luck!");
 
 ##### SDK
 - core
+    - https://symbol.github.io/symbol/sdk/javascript/modules/index.html
 - sym
-- core
-- model
-- utils
+    - https://symbol.github.io/symbol/sdk/javascript/modules/symbol.html    
+- chain
+    - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html
+- models(m.)
+  - https://symbol.github.io/symbol/sdk/javascript/modules/symbol.models.html
+- utils(u.)
+    - https://symbol.github.io/symbol/sdk/javascript/modules/index.utils.html
 
