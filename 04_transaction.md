@@ -4,10 +4,6 @@
 
 https://docs.symbol.dev/concepts/transaction.html
 
-## 演習内容
-- 転送トランザクション
-- アグリゲートトランザクション
-
 ## スクリプト
 ```js
 //転送トランザクション transfer transaction
