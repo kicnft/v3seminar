@@ -6,11 +6,6 @@
 
 https://docs.symbol.dev/ja/concepts/mosaic.html
 
-## 演習内容
-- モザイクの作成
-- 作成したモザイクの確認
-- モザイクの使用
-
 ## スクリプト
 
 
