@@ -226,7 +226,11 @@ info = await api("/accounts/" + adr);
 ##### Script
 - nstohexadr ( name ) //ネームスペースを16進数アドレス文字列に変換
 - decadr ( hexEncodedAddress )
-    
+
+##### API
+- /statements/resolutions/address
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Receipt-routes/operation/searchAddressResolutionStatements
+
 
 #### モザイク解決
 ```js
