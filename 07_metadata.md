@@ -68,9 +68,9 @@ function updvalue(info,value){
     return res
 }
 
-function metaquery(addressOrId,sourceAddress,scopedMetadataKey){
+function metaquery(addressOrId,sourceAddress,scopedMetadataKey,metadataType){
     let query;
-    if(addressOrId.constructor.name === "Address"){
+    if(metadataType === 0){
 
         //Address
         query = new URLSearchParams({
@@ -103,7 +103,7 @@ srcadr = alice.address;  // メタデータ作成者アドレス
 
 key = sym.metadataGenerateKey("key_account")
 value = "test";
-query = metaquery(tgtadr,srcadr,key)
+query = metaquery(tgtadr,srcadr,key, 0)
 info = await api("/metadata?" + query.toString())
 
 dtvalue = updvalue(info,value);
@@ -118,7 +118,7 @@ hash = await sigcosan(aggtx,alice,[])
 clog(hash);
 ```
 ##### Script
-- metaquery ( addressOrId, sourceAddress, scopedMetadataKey )
+- metaquery ( addressOrId, sourceAddress, scopedMetadataKey, metadataType = 0 )
 - updvalue( info, value )
 - acntmetatx ( targetAddress,key,sizeDeltaAndValueMap )
 
@@ -161,7 +161,7 @@ mosid = "71261F9C04C09144"
 tgtadr = alice.address;  // メタデータ記録先アドレス
 srcadr = alice.address;  // メタデータ作成者アドレス
 key = sym.metadataGenerateKey("key_mosaic")
-query = metaquery(mosid,srcadr,key)
+query = metaquery(mosid,srcadr,key,1)
 info = await api("/metadata?" + query.toString())
 value = "test";
 
@@ -177,7 +177,7 @@ clog(hash);
 ```
 
 ##### Script
-- metaquery ( addressOrId, sourceAddress, scopedMetadataKey )
+- metaquery ( addressOrId, sourceAddress, scopedMetadataKey, metadataType = 1 )
 - updvalue ( info, value )
 - mosmetatx ( targetAddress, key, targetMosaic, sizeDeltaAndValueMap )
 
@@ -217,7 +217,7 @@ nsid = "86C2182788284A58"
 tgtadr = alice.address;  // メタデータ記録先アドレス
 srcadr = alice.address;  // メタデータ作成者アドレス
 key = sym.metadataGenerateKey("key_namespace")
-query = metaquery(nsid,srcadr,key)
+query = metaquery(nsid,srcadr,key,2)
 info = await api("/metadata?" + query.toString())
 value = "update test";
 
@@ -232,7 +232,7 @@ hash = await sigcosan(aggtx,alice,[])
 clog(hash);
 ```
 ##### Script
-- metaquery ( addressOrId, sourceAddress, scopedMetadataKey )
+- metaquery ( addressOrId, sourceAddress, scopedMetadataKey, metadataType = 2 )
 - updvalue ( info, value )
 - nsmetatx ( targetAddress, key, targetNamespace, sizeDeltaAndValueMap )
 
