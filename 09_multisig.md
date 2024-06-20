@@ -101,7 +101,7 @@ sigedtx = sig(aggtx,carol1)
 
 //ハッシュロックトランザクション
 hltx = hlocktx(sigedtx.hash);
-hlhash = await sigan(hltx,alice);
+hlhash = await sigan(hltx,carol1);
 clog(hlhash);
 
 //ブロック承認待ち
