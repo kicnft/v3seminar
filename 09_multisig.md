@@ -26,6 +26,14 @@ function aggbdtx(transactions,initPublicKey,cosignatureCount){
     return tx;
 }
 
+function sig(aggregateTx,signer){
+
+    const signature = signer.signTransaction(aggregateTx);
+    const requestBody = sym.SymbolTransactionFactory.attachSignature(aggregateTx, signature);
+    const hash = chain.hashTransaction(aggregateTx).toString();
+    return {request:JSON.parse(requestBody),hash:hash}
+}
+
 async function cosan(aggregateTx,cosigner){
 
     const cosignature = cosigner.cosignTransaction(aggregateTx, true);
