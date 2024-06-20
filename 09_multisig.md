@@ -89,6 +89,9 @@ clog(hash);
 ```
 
 #### アグリゲートボンデッドトランザクションで送信
+
+[8_lock](08_lock.md#スクリプト) のスクリプトを実行しておいてください
+
 ```js
 tx = trftx(alice.address,[],'');
 txes = [embed(tx,bob.publicKey)]; //マルチシグ化したアカウントのアセット
