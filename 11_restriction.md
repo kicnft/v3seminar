@@ -84,7 +84,7 @@ hash = await sigan(tx,alice);
 clog(hash);
 ```
 
-#### アカウント-アドレス制限
+#### アカウント - アドレス制限
 ```js
 bob = newacnt()
 
@@ -101,7 +101,7 @@ hash = await sigan(tx,dave)
 clog(hash)
 ```
 
-#### アカウント-モザイク制限
+#### アカウント - モザイク制限
 ```js
 f = 2 + 32768 //BlockMosaicId
 flags = new sym.models.AccountRestrictionFlags(f);
@@ -114,7 +114,7 @@ hash = await sigan(tx,dave)
 clog(hash)
 ```
 
-#### アカウント-操作制限
+#### アカウント - 操作制限
 ```js
 f = 4 + 16384 //AllowOutgoingTransactionType
 flags = new sym.models.AccountRestrictionFlags(f);
