@@ -5,10 +5,6 @@ Symbolアカウントはマルチシグに変換することができます。�
 
 https://docs.symbol.dev/concepts/multisig-account.html
 
-## 演習内容
-- マルチシグ化
-- マルチシグ構成変更
-
 ## スクリプト
 
 ```js
