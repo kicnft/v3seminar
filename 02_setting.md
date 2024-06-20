@@ -184,7 +184,7 @@ async function sigcosan(aggregateTransaction,signer,cosigners){
     //連署
     for(cosigner of cosigners){
         const cosignature = cosigner.cosignTransaction(aggregateTransaction);
-        tx.cosignatures.push(cosignature);
+        aggregateTransaction.cosignatures.push(cosignature);
     }
     txstat(aggregateTransaction);
 
