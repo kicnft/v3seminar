@@ -17,7 +17,7 @@ https://docs.symbol.dev/api.html#websockets
 uid = "";
 funcMap = {};
 
-function addCallback(channel, callback){
+function addcb(channel, callback){
   if (!funcMap.hasOwnProperty(channel)) {
     funcMap[channel] = [];
   }
@@ -65,14 +65,14 @@ ws = await connectWebSocket(node);
 
 ### ブロック生成
 ```js
-addCallback("block", (block) => {
+addcb("block", (block) => {
   console.log(block);
 });
 ws.socket.send(JSON.stringify({ uid: uid, subscribe: "block" }));
 ```
 
 ##### Script
-- addCallback ( channel, callback )
+- addcb ( channel, callback )
 
 ##### API
 - channels : block
@@ -83,7 +83,7 @@ ws.socket.send(JSON.stringify({ uid: uid, subscribe: "block" }));
 ```js
 //tab1
 ch1 = `confirmedAdded/${alice.address}`
-addCallback(ch1 , (tx) => {
+addcb(ch1 , (tx) => {
   console.log(tx);
 });
 ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch1 }));
@@ -91,7 +91,7 @@ ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch1 }));
 //tab2
 bob = newacnt()
 ch2 = `confirmedAdded/${bob.address}`
-addCallback(ch2 , (tx) => {
+addcb(ch2 , (tx) => {
   console.log(tx);
 });
 ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch2 }));
@@ -102,7 +102,7 @@ clog(hash);
 ```
 
 ##### Script
-- addCallback ( channel, callback )
+- addcb ( channel, callback )
 
 ##### API
 - channels : confirmedAdded
@@ -112,28 +112,28 @@ clog(hash);
 ```js
 //tab1
 ch1 = `partialAdded/TCF7OVMXVNZC6GCMYBNMDSNS56CTOH6FA5H4W7I`
-addCallback(ch1 , (tx) => {
+addcb(ch1 , (tx) => {
   console.log(tx);
 });
 ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch1 }));
 
 //tab2
 ch2 = `partialAdded/TBP6WMTKDVSSYYSS4LLHA6T6AMNO2XKBPU73BNY`
-addCallback(ch2 , (tx) => {
+addcb(ch2 , (tx) => {
   console.log(tx);
 });
 ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch2 }));
 
 //tab3
 ch3 = `partialAdded/TCXIDAWKVRXS4XWWKXN2J5XCHXRPRUDGSTUO3BY`
-addCallback(ch3 , (tx) => {
+addcb(ch3 , (tx) => {
   console.log(tx);
 });
 ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch3 }));
 ```
 
 ##### Script
-- addCallback ( channel, callback )
+- addcb ( channel, callback )
 
 ##### API
 - channels : partialAdded
