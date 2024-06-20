@@ -6,12 +6,6 @@ WebSocketのURIはHTTPリクエストのURIと同じホストとポートを共�
 
 https://docs.symbol.dev/api.html#websockets
 
-## 演習内容
-- 接続
-- ブロック生成受信
-- 承認トランザクション受信
-- 署名要求受信
-
 ## スクリプト
 ```js
 uid = "";
