@@ -143,6 +143,8 @@ clog(phash)
 
 ### シークレットロック
 ```js
+//事前にAliceの残高確認
+
 proof = crypto.getRandomValues(new Uint8Array(20))
 hash = sha3_256.create();
 hash.update(proof);
