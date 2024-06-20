@@ -52,6 +52,12 @@ function connectWebSocket(targetNode) {
         socket.onerror = function () {reject(new Error("Failed to connect to the WebSocket"));};
     });
 }
+
+function wssend(uid,channel){
+  ws.socket.send(JSON.stringify({ uid: uid, subscribe: channel }));
+
+}
+
 console.log("Import Observer Script")
 ```
 
@@ -66,9 +72,9 @@ ws = await connectWebSocket(node);
 ### ブロック生成
 ```js
 addcb("block", (block) => {
-  console.log(block);
-});
-ws.socket.send(JSON.stringify({ uid: uid, subscribe: "block" }));
+  console.log(block)
+})
+wssend(uid,"block")
 ```
 
 ##### Script
@@ -85,8 +91,8 @@ ws.socket.send(JSON.stringify({ uid: uid, subscribe: "block" }));
 ch1 = `confirmedAdded/${alice.address}`
 addcb(ch1 , (tx) => {
   console.log(tx);
-});
-ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch1 }));
+})
+wssend(uid,ch1)
 
 //tab2
 bob = newacnt()
@@ -94,7 +100,7 @@ ch2 = `confirmedAdded/${bob.address}`
 addcb(ch2 , (tx) => {
   console.log(tx);
 });
-ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch2 }));
+wssend(uid,ch2)
 
 tx = trftx(bob.address,[],'hello');
 hash = await sigan(tx,alice);
@@ -111,25 +117,19 @@ clog(hash);
 ### 署名要求
 ```js
 //tab1
-ch1 = `partialAdded/TCF7OVMXVNZC6GCMYBNMDSNS56CTOH6FA5H4W7I`
+ch1 = `partialAdded/${alice.address}`
 addcb(ch1 , (tx) => {
   console.log(tx);
 });
 ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch1 }));
 
 //tab2
-ch2 = `partialAdded/TBP6WMTKDVSSYYSS4LLHA6T6AMNO2XKBPU73BNY`
+ch2 = `partialAdded/${bob.address}`
 addcb(ch2 , (tx) => {
   console.log(tx);
 });
 ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch2 }));
 
-//tab3
-ch3 = `partialAdded/TCXIDAWKVRXS4XWWKXN2J5XCHXRPRUDGSTUO3BY`
-addcb(ch3 , (tx) => {
-  console.log(tx);
-});
-ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch3 }));
 ```
 
 ##### Script
