@@ -71,9 +71,7 @@ ws = await connectWebSocket(node);
 
 ### ブロック生成
 ```js
-addcb("block", (block) => {
-  console.log(block)
-})
+addcb("block", e => console.log(e) )
 wssend(uid,"block")
 ```
 
@@ -89,17 +87,13 @@ wssend(uid,"block")
 ```js
 //tab1
 ch1 = `confirmedAdded/${alice.address}`
-addcb(ch1 , (tx) => {
-  console.log(tx);
-})
+addcb(ch1 , e => console.log(e) )
 wssend(uid,ch1)
 
 //tab2
 bob = newacnt()
 ch2 = `confirmedAdded/${bob.address}`
-addcb(ch2 , (tx) => {
-  console.log(tx);
-});
+addcb(ch2 , e => console.log(e) )
 wssend(uid,ch2)
 
 tx = trftx(bob.address,[],'hello');
@@ -118,18 +112,13 @@ clog(hash);
 ```js
 //tab1
 ch1 = `partialAdded/${alice.address}`
-addcb(ch1 , (tx) => {
-  console.log(tx);
-});
-ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch1 }));
+addcb(ch1 , e => console.log(e) )
+wssend(uid,ch1)
 
 //tab2
 ch2 = `partialAdded/${bob.address}`
-addcb(ch2 , (tx) => {
-  console.log(tx);
-});
-ws.socket.send(JSON.stringify({ uid: uid, subscribe: ch2 }));
-
+addcb(ch2 , e => console.log(e) )
+wssend(uid,ch2)
 ```
 
 ##### Script
