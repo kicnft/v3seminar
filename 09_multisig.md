@@ -86,9 +86,7 @@ clog(hash)
 #### 確認
 ```js
 info = await api("/account/" + bob.address.toString() + "/multisig")
-for(adr of info.multisig.cosignatoryAddresses){
-    console.log(decadr(adr))
-}
+info.multisig.cosignatoryAddresses.map(x=>decadr(x))
 ```
 ##### API
 - /account/{address}/multsig
