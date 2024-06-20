@@ -12,10 +12,6 @@ Symbolは、資産の分散型交換を目的としたトラストレスな環�
 
 https://docs.symbol.dev/concepts/cross-chain-swaps.html#cross-chain-swaps
 
-## 演習内容
-- アグリゲートボンデッドトランザクション
-- シークレットロック・シークレットプルーフ
-
 ## スクリプト
 
 ```js
