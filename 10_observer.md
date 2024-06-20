@@ -111,6 +111,9 @@ clog(hash);
   - https://docs.symbol.dev/api.html#channels
 
 ### 署名要求
+
+[8.ロック](08_lock.md) のスクリプトを実行しておいてください
+
 ```js
 //tab1
 ch1 = "partialAdded/" + alice.address
@@ -121,6 +124,29 @@ wssend(uid,ch1)
 ch2 = "partialAdded/" + bob.address
 addcb(ch2 , e => console.log(e) )
 wssend(uid,ch2)
+
+//tab1
+tx1 = trftx(alice.address,[],'')
+tx2 = trftx(bob.address,[],'')
+txes = [
+  embed(tx1,bob.publicKey),
+  embed(tx2,alice.publicKey)
+]
+//AggregateBondedTransaction
+aggtx = aggbdtx(txes,alice.publicKey,1); //起案者
+sigedtx = sig(aggtx,alice)
+
+ch3 = "confirmedAdded/" + alice.address
+addcb(ch1 , e => {
+  res = await api("/transactions/partial","PUT",sigedtx.request)
+  clog(sigedtx.hash)
+})
+wssend(uid,ch3)
+
+//ハッシュロックトランザクション
+hltx = hlocktx(sigedtx.hash);
+hlhash = await sigan(hltx,carol1);
+clog(hlhash);
 ```
 
 ##### Script
