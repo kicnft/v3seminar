@@ -5,13 +5,6 @@
 
 https://docs.symbol.dev/guides/aggregate/adding-cosginatures-aggregate-complete.html
 
-
-## 演習内容
-- トランザクション作成
-- 連署
-- 署名の集約とアナウンス
-
-
 ## スクリプト
 ```js
 function sig(aggregateTransaction,signer){
