@@ -81,6 +81,9 @@ async function cosan(aggregateTx,cosigner){
     console.log(res)
     return cosignature.parentHash.toString();
 }
+
+sha3_256 = (await import('https://cdn.skypack.dev/@noble/hashes/sha3')).sha3_256
+
 console.log("Import Lock Script")
 ```
 
@@ -140,8 +143,6 @@ clog(phash)
 
 ### シークレットロック
 ```js
-sha3_256 = (await import('https://cdn.skypack.dev/@noble/hashes/sha3')).sha3_256
-
 proof = crypto.getRandomValues(new Uint8Array(20))
 hash = sha3_256.create();
 hash.update(proof);
