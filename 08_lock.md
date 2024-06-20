@@ -133,7 +133,7 @@ phash = await cosan(aggtx,bob)
 clog(phash)
 ```
 ##### Script
-- cosan ( aggregateTx, cosigner ) 
+- await cosan ( aggregateTx, cosigner ) 
 ##### SDK
 - TransactionFactory.deserialize
     - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolTransactionFactory.html#deserialize
