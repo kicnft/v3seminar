@@ -143,7 +143,7 @@ addcb(ch1 , e => {
 })
 wssend(uid,ch3)
 
-//ハッシュロックトランザクション
+//HashLockTransaction
 hltx = hlocktx(sigedtx.hash);
 hlhash = await sigan(hltx,carol1);
 clog(hlhash);
