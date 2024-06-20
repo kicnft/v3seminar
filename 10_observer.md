@@ -77,6 +77,7 @@ wssend(uid,"block")
 
 ##### Script
 - addcb ( channel, callback )
+- wssend ( uid, channel )
 
 ##### API
 - channels : block
@@ -86,13 +87,13 @@ wssend(uid,"block")
 ### 承認トランザクション
 ```js
 //tab1
-ch1 = `confirmedAdded/${alice.address}`
+ch1 = "confirmedAdded/" + alice.address
 addcb(ch1 , e => console.log(e) )
 wssend(uid,ch1)
 
 //tab2
 bob = newacnt()
-ch2 = `confirmedAdded/${bob.address}`
+ch2 = "confirmedAdded/" + bob.address
 addcb(ch2 , e => console.log(e) )
 wssend(uid,ch2)
 
@@ -103,6 +104,7 @@ clog(hash);
 
 ##### Script
 - addcb ( channel, callback )
+- wssend ( uid, channel )
 
 ##### API
 - channels : confirmedAdded
@@ -111,18 +113,19 @@ clog(hash);
 ### 署名要求
 ```js
 //tab1
-ch1 = `partialAdded/${alice.address}`
+ch1 = "partialAdded/" + alice.address
 addcb(ch1 , e => console.log(e) )
 wssend(uid,ch1)
 
 //tab2
-ch2 = `partialAdded/${bob.address}`
+ch2 = "partialAdded/" + bob.address
 addcb(ch2 , e => console.log(e) )
 wssend(uid,ch2)
 ```
 
 ##### Script
 - addcb ( channel, callback )
+- wssend ( uid, channel )
 
 ##### API
 - channels : partialAdded
