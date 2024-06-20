@@ -4,16 +4,6 @@ Symbolは、ブロックに関連する大量のデータを保存するため�
 
 https://docs.symbol.dev/concepts/data-validation.html
 
-## 演習内容
-
-- トランザクションの検証
-- ブロックヘッダーの検証
-- ステートの検証
-- アカウントの検証
-- メタデータの検証
-- シークレットロックの検証
-
-
 ## スクリプト
 ```js
 function hexToUint8(hex) {
