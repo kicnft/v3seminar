@@ -190,8 +190,9 @@ clog(hash)
 ```js
 await api("/transactions/confirmed/"+ hash)
 info = await api("/statements/transaction?targetAddress=" + bob.address)
-info.data.map(x=>m.ReceiptType.valueToKey(x.statement.receipts[0].type))
 info.data.map(x=>x.statement.receipts[0].type)
+info.data.map(x=>m.ReceiptType.valueToKey(x.statement.receipts[0].type))
+info.data.filter(x=>m.ReceiptType.valueToKey(x.statement.receipts[0].type) === "LOCK_SECRET_CREATED")
 
 //statement.receipts[n].type
 //8786: 'LockSecret_Completed' :ロック解除完了
