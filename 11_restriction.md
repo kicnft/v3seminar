@@ -13,10 +13,6 @@ https://docs.symbol.dev/concepts/account-restriction.html
 特定のネットワークのすべてのモザイクがモザイク制限の対象になるわけではありません。この機能は、発行者が作成時に明示的に制限可能なプロパティを追加したモザイクにのみ影響します。このプロパティは、パブリックネットワーク通貨のような自律的なトークンには望ましくないため、デフォルトでは無効になっています。
 
 https://docs.symbol.dev/concepts/mosaic-restriction.html
-
-## 演習内容
-- アカウント制限
-- グローバルモザイク制限
   
 ## スクリプト
 ```js
