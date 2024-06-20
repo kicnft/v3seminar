@@ -18,36 +18,6 @@ function msigtx(minRemoval,minApproval,addressAdditions,addressDeletions){
     return descriptor
 }
 
-//アグリゲートボンデッドトランザクション aggregate bobded transaction
-function aggbdtx(transactions,initPublicKey,cosignatureCount){
-    const transactionsHash = sym.SymbolFacade.hashEmbeddedTransactions(transactions);
-    const desc = new sym.descriptors.AggregateBondedTransactionV2Descriptor(transactionsHash,transactions,[]);
-    const tx = chain.createTransactionFromTypedDescriptor(desc,initPublicKey,feeMultiplier,add2Hours,cosignatureCount);
-    return tx;
-}
-
-function sig(aggregateTx,signer){
-
-    const signature = signer.signTransaction(aggregateTx);
-    const requestBody = sym.SymbolTransactionFactory.attachSignature(aggregateTx, signature);
-    const hash = chain.hashTransaction(aggregateTx).toString();
-    return {request:JSON.parse(requestBody),hash:hash}
-}
-
-async function cosan(aggregateTx,cosigner){
-
-    const cosignature = cosigner.cosignTransaction(aggregateTx, true);
-    const body= {
-      "parentHash": cosignature.parentHash.toString(),
-      "signature": cosignature.signature.toString(),
-      "signerPublicKey": cosignature.signerPublicKey.toString(),
-      "version": cosignature.version.toString()
-    };
-    
-    const res = await api('/transactions/cosignature',"PUT",body)
-    console.log(res)
-    return cosignature.parentHash.toString();
-}
 console.log("Import Multisig Script")
 ```
 ## 演習
