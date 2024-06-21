@@ -349,6 +349,8 @@ checkState(stateProof,stateHash,pathHash,rootHash);
 ### シークレットロックの検証
 
 #### 事前準備
+[8.ロック](08_lock.md)のスクリプトを事前に実行しておいてください。
+
 ```js
 proof = crypto.getRandomValues(new Uint8Array(20))
 hash = sha3_256.create();
