@@ -6,36 +6,6 @@ https://docs.symbol.dev/concepts/transaction.html
 
 ## スクリプト
 ```js
-//転送トランザクション transfer transaction
-function trftx(address,mosaics,message){
-    messageData = new Uint8Array([
-        0x00, //現行アプリケーション対応 00:平文, 01:暗号化
-        ...new TextEncoder().encode(message),
-    ]);
-    
-    return new sym.descriptors.TransferTransactionV1Descriptor(address,mosaics,messageData);
-}
-
-//署名＆通知 sign and announce
-async function sigan(desc,signer){
-    const tx = chain.createTransactionFromTypedDescriptor(desc,signer.publicKey,feeMultiplier,add2Hours);
-    txstat(tx);
-
-    const signature = signer.signTransaction(tx);
-    const requestBody = sym.SymbolTransactionFactory.attachSignature(tx, signature);
-    const hash = chain.hashTransaction(tx).toString();
-    const res = await fetch(
-      new URL('/transactions', node),
-      {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: requestBody,
-      }
-    );
-    console.log(res);
-    return hash;
-}
-
 //埋め込みトランザクション
 function embed(tx,pubkey){
     return chain.createEmbeddedTransactionFromTypedDescriptor(tx,pubkey);
