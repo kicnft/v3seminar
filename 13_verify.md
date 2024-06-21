@@ -144,9 +144,6 @@ console.log(result);
 info = await api("/blocks/" + height)
 block = info.block;
 
-pinfo = await api("/blocks/" + (height-1))
-phash = pinfo.meta.hash;
-
 hasher = sha3_256.create();
 hasher.update(hexToUint8(block.signature)); //signature
 hasher.update(hexToUint8(block.signerPublicKey)); //publicKey
@@ -174,6 +171,10 @@ if(block.type === 33347){//importance block
 }
 
 hash = uint8ToHex(hasher.digest());
+console.log(hash);
+
+pinfo = await api("/blocks/" + (height-1));
+block.previousBlockHash === pinfo.meta.hash;
 ```
 ### ステートハッシュの検証
 ```js
