@@ -354,25 +354,22 @@ bytes = new Uint8Array([
 ]);
 
 hasher = sha3_256.create();
-aliceStateHash = uint8ToHex(hasher.update(bytes).digest());
+secretStateHash = uint8ToHex(hasher.update(bytes).digest());
+
+hasher = sha3_256.create();
+bytes = new Uint8Array(hexToUint8(secretStateHash));
+secretPathHash = uint8ToHex(hasher.update(bytes).digest());
+
+blockInfo = await api("/blocks?order=desc");
+rootHash = blockInfo.data[0].meta.stateHashSubCacheMerkleRoots[5];
 
 bytes = new Uint8Array([
 ...hexToUint8(lockInfo.secret),
 ...hexToUint8(lockInfo.recipientAddress)
 ]);
-
-hasher = sha3_256.create();
-secretStateHash = uint8ToHex(hasher.update(bytes).digest());
 stateProof = await api(`/lock/secret/${secretStateHash}/merkle` )
 
-blockInfo = await api("/blocks?order=desc");
-rootHash = blockInfo.data[0].meta.stateHashSubCacheMerkleRoots[5];
-
-hasher = sha3_256.create();
-bytes = new Uint8Array(hexToUint8(secretStateHash));
-alicePathHash = uint8ToHex(hasher.update(bytes).digest());
-
-checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
+checkState(stateProof,secretStateHash,secretPathHash,rootHash);
 ```
 ##### Script
 - checkState ( stateProof, stateHash, pathHash, rootHash )
