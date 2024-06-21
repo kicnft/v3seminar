@@ -4,9 +4,8 @@
 
 https://docs.symbol.dev/concepts/transaction.html
 
-## 演習
+## スクリプト
 
-### 事前準備
 3.アカウントの章で作成したアカウントを復元してください。
 ```js
 alice = acnt("C9E741092833FEA79D7DB7DC839506BBEB6704631DB9B4D59C60A02BF6B0200C");
@@ -17,6 +16,9 @@ bob = newacnt();
 
 > [!NOTE]
 > 以後の章でも演習に入る前に同様の手順でアカウントを復元しておいてください
+
+## 演習
+
 
 ### 転送トランザクション
 ```js
