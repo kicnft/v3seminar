@@ -4,25 +4,6 @@
 
 https://docs.symbol.dev/concepts/transaction.html
 
-## スクリプト
-```js
-//埋め込みトランザクション
-function embed(tx,pubkey){
-    return chain.createEmbeddedTransactionFromTypedDescriptor(tx,pubkey);
-}
-
-//アグリゲートコンプリートトランザクション aggregate complete transaction
-function aggcptx(transactions,initPublicKey,cosignatureCount){
-    const transactionsHash = sym.SymbolFacade.hashEmbeddedTransactions(transactions);
-    const desc = new sym.descriptors.AggregateCompleteTransactionV2Descriptor(transactionsHash,transactions,[]);
-    const tx = chain.createTransactionFromTypedDescriptor(desc,initPublicKey,feeMultiplier,add2Hours,cosignatureCount);
-    return tx;
-}
-
-console.log("Import Transaction Script")
-
-```
-
 ## 演習
 
 ### 事前準備
