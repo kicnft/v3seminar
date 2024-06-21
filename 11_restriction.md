@@ -75,7 +75,7 @@ console.log("Import Restriction Script")
 #### 事前準備
 ```js
 dave = newacnt()
-tx = trftx(dave.address,[mosaic(xymid,100_000000n)],'');
+tx = trftx(dave.address,[mosaic(xymid,1_000000n)],'');
 hash = await sigan(tx,alice);
 clog(hash);
 ```
