@@ -114,7 +114,7 @@ console.log(mkhash);
 leaf = new core.Hash256(mkhash);
 
 info = await api("/blocks/" + height)
-hroot = new core.Hash256(info.block.transactionsHash)
+HRoot = new core.Hash256(info.block.transactionsHash)
 minfo = await api(`/blocks/${height}/transactions/${leaf}/merkle`)
 
 let paths = [];
