@@ -42,6 +42,9 @@ res = sig(aggtx,alice,[])
 console.log(`payload:\n${res.request.payload}`)
 ```
 
+##### Script
+- sig ( aggregateTransaction, signer )
+
 ### Bobによる連署
 ```js
 bob = acnt("") //秘密鍵を指定
