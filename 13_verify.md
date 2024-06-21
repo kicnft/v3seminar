@@ -114,10 +114,11 @@ console.log(mkhash);
 //トランザクションから計算
 leaf = new core.Hash256(mkhash);
 
-info = await api("/blocks/" + height)
-HRoot = new core.Hash256(info.block.transactionsHash)
-minfo = await api(`/blocks/${height}/transactions/${leaf}/merkle`)
+//ブロックチェーンから取得
+binfo = await api("/blocks/" + height)
+HRoot = new core.Hash256(binfo.block.transactionsHash)
 
+minfo = await api(`/blocks/${height}/transactions/${leaf}/merkle`)
 let paths = [];
 minfo.merklePath.forEach(path => paths.push({
     "hash": new core.Hash256(path.hash),
