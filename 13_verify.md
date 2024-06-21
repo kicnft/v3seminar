@@ -93,6 +93,7 @@ res = chain.verifyTransaction(tx, tx.signature);
 ```
 ##### SDK
 - verifyTransaction
+  - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#verifyTransaction
 
 #### マークルハッシュ値の計算
 ```js
@@ -124,9 +125,15 @@ minfo.merklePath.forEach(path => paths.push({
 }));
 merkleProof = paths;
 
-result = sdkSymbol.proveMerkle(leaf, merkleProof, HRoot);
+result = sym.proveMerkle(leaf, merkleProof, HRoot);
 console.log(result);
 ```
+
+##### SDK
+- Hash256
+  - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.models.Hash256.html
+- proveMerkle
+  - https://symbol.github.io/symbol/sdk/javascript/functions/symbol.proveMerkle.html
 
 ### ブロックヘッダーの検証
 ```js
