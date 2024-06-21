@@ -135,6 +135,9 @@ merkleProof = paths;
 result = sym.proveMerkle(leaf, merkleProof, HRoot);
 console.log(result);
 ```
+##### API
+- /blocks/{height}/transactions/{leaf}/merkle
+  - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Block-routes/operation/getMerkleTransaction
 
 ##### SDK
 - Hash256
