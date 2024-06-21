@@ -201,9 +201,6 @@ aliceAddress = new sym.Address(
   hexToUint8("9850BF0FD1A45FCEE211B57D0FE2B6421EB81979814F6292")
 );
 
-hasher = sha3_256.create();
-alicePathHash = uint8ToHex(hasher.update(aliceAddress.bytes).digest());
-
 //hasher = sha3_256.create();
 info = await api('/accounts/' + aliceAddress.toString())
 aliceInfo = info.account
@@ -268,6 +265,9 @@ accountInfoBytes = new Uint8Array([
 
 hasher = sha3_256.create();
 aliceStateHash = uint8ToHex(hasher.update(accountInfoBytes).digest());
+
+hasher = sha3_256.create();
+alicePathHash = uint8ToHex(hasher.update(aliceAddress.bytes).digest());
 
 blockInfo = await api("/blocks?order=desc");
 rootHash = blockInfo.data[0].meta.stateHashSubCacheMerkleRoots[0];
