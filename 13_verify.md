@@ -94,13 +94,12 @@ res = chain.verifyTransaction(tx, tx.signature);
 ##### SDK
 - verifyTransaction
 
+#### マークルハッシュ値の計算
 ```js
-hash = chain.hashTransaction(tx);
-console.log(hash);
-mchash = hash;
+mkhash = chain.hashTransaction(tx);
 if (tx.cosignatures !== undefined && tx.cosignatures.length > 0) {
   hasher = sha3_256.create();
-  hasher.update(hash.bytes);
+  hasher.update(mkhash.bytes);
   for (cos of tx.cosignatures){
     hasher.update(cos.signerPublicKey.bytes);
   }
