@@ -194,6 +194,8 @@ block.stateHash === hash
 ```
 
 ### アカウントの検証
+
+#### 前準備
 ```js
 aliceAddress = new sym.Address(
   hexToUint8("9850BF0FD1A45FCEE211B57D0FE2B6421EB81979814F6292")
@@ -205,7 +207,10 @@ alicePathHash = uint8ToHex(hasher.update(aliceAddress.bytes).digest());
 //hasher = sha3_256.create();
 info = await api('/accounts/' + aliceAddress.toString())
 aliceInfo = info.account
+```
 
+#### 検証
+```js
 format = (parseInt(aliceInfo.importance) === 0 || aliceInfo.activityBuckets.length < 5) ? 0x00 : 0x01;
 supplementalPublicKeysMask = 0x00;
 extractPublicKey = (key) => key ? hexToUint8(key.publicKey) : new Uint8Array([]);
