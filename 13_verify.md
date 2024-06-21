@@ -340,34 +340,54 @@ checkState(stateProof,stateHash,pathHash,rootHash);
 
 ### シークレットロックの検証
 
+#### 事前準備
+```js
+proof = crypto.getRandomValues(new Uint8Array(20))
+hash = sha3_256.create();
+hash.update(proof);
+secret = hash.digest();
+//SecretLockTransaction
+tx = slocktx(bob.address,secret,mosaic(xymhex,1000000))
+hash = await sigan(tx,alice);
+clog(hash)
+
+info = await api("/lock/secret?address=" + alice.address)
+linfo = info.data[0].lock
+```
+
+#### 検証
 ```js
 bytes = new Uint8Array([
-...new Uint8Array((new Uint16Array([lockInfo.version])).buffer),
-...hexToUint8(lockInfo.ownerAddress),
-...hexToUint8(lockInfo.mosaicId).reverse(),
-...new Uint8Array((new BigInt64Array([BigInt(lockInfo.amount)])).buffer),
-...new Uint8Array((new BigInt64Array([BigInt(lockInfo.endHeight)])).buffer),
-...new Uint8Array([lockInfo.status]),
-...new Uint8Array([lockInfo.hashAlgorithm]),
-...hexToUint8(lockInfo.secret),
-...hexToUint8(lockInfo.recipientAddress)
+...hexToUint8(linfo.secret),
+...hexToUint8(linfo.recipientAddress)
+]);
+
+hasher = sha3_256.create();
+compositeHash = uint8ToHex(hasher.update(bytes).digest());
+
+bytes = new Uint8Array([
+...new Uint8Array((new Uint16Array([linfo.version])).buffer),
+...hexToUint8(linfo.ownerAddress),
+...hexToUint8(linfo.mosaicId).reverse(),
+...new Uint8Array((new BigInt64Array([BigInt(linfo.amount)])).buffer),
+...new Uint8Array((new BigInt64Array([BigInt(linfo.endHeight)])).buffer),
+...new Uint8Array([linfo.status]),
+...new Uint8Array([linfo.hashAlgorithm]),
+...hexToUint8(linfo.secret),
+...hexToUint8(linfo.recipientAddress)
 ]);
 
 hasher = sha3_256.create();
 secretStateHash = uint8ToHex(hasher.update(bytes).digest());
 
 hasher = sha3_256.create();
-bytes = new Uint8Array(hexToUint8(secretStateHash));
+bytes = new Uint8Array(hexToUint8(compositeHash));
 secretPathHash = uint8ToHex(hasher.update(bytes).digest());
 
 blockInfo = await api("/blocks?order=desc");
 rootHash = blockInfo.data[0].meta.stateHashSubCacheMerkleRoots[5];
 
-bytes = new Uint8Array([
-...hexToUint8(lockInfo.secret),
-...hexToUint8(lockInfo.recipientAddress)
-]);
-stateProof = await api(`/lock/secret/${secretStateHash}/merkle` )
+stateProof = await api(`/lock/secret/${compositeHash}/merkle` )
 
 checkState(stateProof,secretStateHash,secretPathHash,rootHash);
 ```
