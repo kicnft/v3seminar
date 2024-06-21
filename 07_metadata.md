@@ -135,7 +135,7 @@ clog(hash);
 info = await api("/metadata?" + query.toString())
 value = core.utils.hexToUint8(info.data[0].metadataEntry.value)
 td = new TextDecoder()
-td.decode(value))
+td.decode(value)
 ```
 
 ##### API
