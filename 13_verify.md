@@ -291,6 +291,11 @@ checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
   - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Account-routes/operation/getAccountInfoMerkle
 
 ### メタデータの検証
+
+- 検証対象
+  - https://testnet.symbol.fyi/accounts/TA6EAATQMNJM4QV4ARM3DVWGSZULWBDB7HGEVPY
+
+
 ```js
 srcAddress = (new sym.Address("TA6EAATQMNJM4QV4ARM3DVWGSZULWBDB7HGEVPY")).bytes;
 targetAddress = (new sym.Address("TA6EAATQMNJM4QV4ARM3DVWGSZULWBDB7HGEVPY")).bytes;
