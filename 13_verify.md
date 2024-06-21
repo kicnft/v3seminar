@@ -289,8 +289,8 @@ checkState(stateProof,aliceStateHash,alicePathHash,rootHash);
 
 ### メタデータの検証
 ```js
-srcAddress = (new sym.Address("TBIL6D6RURP45YQRWV6Q7YVWIIPLQGLZQFHWFEQ")).bytes;
-targetAddress = (new sym.Address("TBIL6D6RURP45YQRWV6Q7YVWIIPLQGLZQFHWFEQ")).bytes;
+srcAddress = (new sym.Address("TA6EAATQMNJM4QV4ARM3DVWGSZULWBDB7HGEVPY")).bytes;
+targetAddress = (new sym.Address("TA6EAATQMNJM4QV4ARM3DVWGSZULWBDB7HGEVPY")).bytes;
 
 //compositePathHash(Key値)
 hasher = sha3_256.create();    
@@ -314,8 +314,8 @@ hasher.update(srcAddress);
 hasher.update(targetAddress);
 hasher.update(hexToUint8("9772B71B058127D7").reverse());  // scopeKey, メタデータキーを指定
 hasher.update(hexToUint8("0000000000000000").reverse());  // targetId
-hasher.update(Uint8Array.from([0]));                                    // account
-value = new TextEncoder().encode("text");                                            // メタデータの値を指定
+hasher.update(Uint8Array.from([0]));                      // account
+value = new TextEncoder().encode("updatedtest");          // メタデータの値を指定
 hasher.update(new Uint8Array((new Uint16Array([value.length])).buffer));
 hasher.update(value); 
 stateHash = uint8ToHex(hasher.digest());
