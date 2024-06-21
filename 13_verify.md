@@ -98,6 +98,8 @@ tx = sym.SymbolTransactionFactory.deserialize(u.hexToUint8("2802000000000000A515
 res = chain.verifyTransaction(tx, tx.signature);
 ```
 ##### SDK
+- SymbolTransactionFactory.deserialize
+  - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolTransactionFactory.html#deserialize
 - verifyTransaction
   - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolFacade.html#verifyTransaction
 
@@ -182,6 +184,11 @@ console.log(hash);
 pinfo = await api("/blocks/" + (height-1));
 block.previousBlockHash === pinfo.meta.hash;
 ```
+
+##### API
+- /blocks/{height}
+  - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Block-routes/operation/getBlockByHeight
+ 
 ### ステートハッシュの検証
 ```js
 hasher = sha3_256.create();
