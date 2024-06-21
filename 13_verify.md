@@ -108,7 +108,7 @@ if (tx.cosignatures !== undefined && tx.cosignatures.length > 0) {
 console.log(mkhash);
 ```
 
-
+#### 検証
 ```js
 //トランザクションから計算
 leaf = new core.Hash256(mkhash);
