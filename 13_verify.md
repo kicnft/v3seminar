@@ -148,10 +148,48 @@ console.log(result);
   - https://symbol.github.io/symbol/sdk/javascript/functions/symbol.proveMerkle.html
 
 ### ブロックヘッダーの検証
+##### 事前準備
 ```js
 info = await api("/blocks/" + height)
 block = info.block;
+```
+#### 署名検証
+```js
+buf = new Uint8Array([
+...new Uint8Array([block.version]),
+...new Uint8Array([block.network]),
+...new Uint8Array((new Uint16Array([block.type])).buffer),
+...new Uint8Array((new BigInt64Array([BigInt(block.height)])).buffer),
+...new Uint8Array((new BigInt64Array([BigInt(block.timestamp)])).buffer),
+...new Uint8Array((new BigInt64Array([BigInt(block.difficulty)])).buffer),
+...hexToUint8(block.proofGamma),
+...hexToUint8(block.proofVerificationHash),
+...hexToUint8(block.proofScalar),
+...hexToUint8(block.previousBlockHash),
+...hexToUint8(block.transactionsHash),
+...hexToUint8(block.receiptsHash),
+...hexToUint8(block.stateHash),
+...hexToUint8(block.beneficiaryAddress),
+...new Uint8Array((new Uint32Array([block.feeMultiplier])).buffer)
+]);
 
+if(block.type === 33347){//importance block
+
+	buf = new Uint8Array([
+		...buf,
+	    ...new Uint8Array((new Uint32Array([block.votingEligibleAccountsCount])).buffer), 
+	    ...new Uint8Array((new BigInt64Array([BigInt(block.harvestingEligibleAccountsCount)])).buffer),
+	    ...new Uint8Array((new BigInt64Array([BigInt(block.totalVotingBalance)])).buffer),
+	    ...hexToUint8(block.previousImportanceBlockHash)
+	]);
+}
+
+v = new sym.Verifier(new core.PublicKey(block.signerPublicKey))
+v.verify(buf,new core.Signature(block.signature))
+```
+
+#### チェーン検証
+```js
 hasher = sha3_256.create();
 hasher.update(hexToUint8(block.signature)); //signature
 hasher.update(hexToUint8(block.signerPublicKey)); //publicKey
