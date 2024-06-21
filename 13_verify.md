@@ -75,8 +75,11 @@ function checkState(stateProof,stateHash,pathHash,rootHash){
   }
  
   //検証
-  console.log("ルート検証：" + treeRootHash === rootHash);
-  console.log("パス検証："　+ treePathHash === pathHash);
+  console.log("ルート検証：");
+  console.log(treeRootHash === rootHash);
+  console.log("パス検証：");
+  console.log(treePathHash === pathHash);
+
 }
 
 console.log("Import Verify Script")
