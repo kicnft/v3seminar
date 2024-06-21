@@ -189,7 +189,8 @@ hasher.update(hexToUint8(info.meta.stateHashSubCacheMerkleRoots[6])); //AccountR
 hasher.update(hexToUint8(info.meta.stateHashSubCacheMerkleRoots[7])); //MosaicRestriction
 hasher.update(hexToUint8(info.meta.stateHashSubCacheMerkleRoots[8])); //Metadata
 hash = uint8ToHex(hasher.digest()).toUpperCase();
-console.log(info.block.stateHash === hash);
+console.log(block.stateHash)
+block.stateHash === hash
 ```
 
 ### アカウントの検証
