@@ -112,17 +112,22 @@ clog(hash);
 [8.ロック](08_lock.md) のスクリプトを実行しておいてください
 
 ```js
+//tab2
+ch2 = "partialAdded/" + bob.address
+addcb(ch2 , e => console.log(e) )
+wssend(uid,ch2)
+bob.publicKey.toString()
+
+
 //tab1
 ch1 = "partialAdded/" + alice.address
 addcb(ch1 , e => console.log(e) )
 wssend(uid,ch1)
 
-//tab2
-ch2 = "partialAdded/" + bob.address
-addcb(ch2 , e => console.log(e) )
-wssend(uid,ch2)
-
-//tab1
+bob = new sym.SymbolPublicAccount(
+  chain,
+  new core.PublicKey("")
+)
 tx1 = trftx(alice.address,[],'')
 tx2 = trftx(bob.address,[],'')
 txes = [
