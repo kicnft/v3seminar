@@ -147,7 +147,7 @@ wssend(uid,ch3)
 
 //HashLockTransaction
 hltx = hlocktx(sigedtx.hash);
-hlhash = await sigan(hltx,carol1);
+hlhash = await sigan(hltx,alice);
 clog(hlhash);
 ```
 
