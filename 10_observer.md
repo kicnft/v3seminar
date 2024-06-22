@@ -80,18 +80,21 @@ wssend(uid,"block")
 
 ### 承認トランザクション
 ```js
+//tab2
+bob = newacnt()
+bob.address.toString()
+
+ch2 = "confirmedAdded/" + bob.address
+addcb(ch2 , e => console.log(e) )
+wssend(uid,ch2)
+
 //tab1
 ch1 = "confirmedAdded/" + alice.address
 addcb(ch1 , e => console.log(e) )
 wssend(uid,ch1)
 
-//tab2
-bob = newacnt()
-ch2 = "confirmedAdded/" + bob.address
-addcb(ch2 , e => console.log(e) )
-wssend(uid,ch2)
-
-tx = trftx(bob.address,[],'hello');
+bobadr = new sym.Address('')
+tx = trftx(bobadr,[],'hello');
 hash = await sigan(tx,alice);
 clog(hash);
 ```
