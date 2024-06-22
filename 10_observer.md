@@ -139,7 +139,7 @@ aggtx = aggbdtx(txes,alice.publicKey,1); //起案者
 sigedtx = sig(aggtx,alice)
 
 ch3 = "confirmedAdded/" + alice.address
-addcb(ch3 , e => {
+addcb(ch3 , async e => {
   console.log(e)
   res = await api("/transactions/partial","PUT",sigedtx.request)
   clog(sigedtx.hash)
