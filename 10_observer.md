@@ -141,8 +141,10 @@ sigedtx = sig(aggtx,alice)
 ch3 = "confirmedAdded/" + alice.address
 addcb(ch3 , async e => {
   console.log(e)
-  res = await api("/transactions/partial","PUT",sigedtx.request)
-  clog(sigedtx.hash)
+  if(e.transaction.type === 16712){
+    res = await api("/transactions/partial","PUT",sigedtx.request)
+    clog(sigedtx.hash)
+  }
 })
 wssend(uid,ch3)
 
