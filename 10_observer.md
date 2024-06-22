@@ -114,7 +114,18 @@ clog(hash);
 ```js
 //tab2
 ch2 = "partialAdded/" + bob.address
-addcb(ch2 , e => console.log(e) )
+addcb(ch2 , e => {
+  console.log(e)
+  cosign = bob.keyPair.sign(u.hexToUint8(e.meta.hash))
+  body= {
+      "parentHash": e.meta.hash,
+      "signature": u.uint8ToHex(cosign.bytes),
+      "signerPublicKey": bob.publicKey.toString(),
+      "version": '0'
+  };
+  res = await api('/transactions/cosignature',"PUT",body)
+
+})
 wssend(uid,ch2)
 bob.publicKey.toString()
 
