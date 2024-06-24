@@ -406,7 +406,7 @@ hash = sha3_256.create();
 hash.update(proof);
 secret = hash.digest();
 //SecretLockTransaction
-tx = slocktx(bob.address,secret,mosaic(xymhex,1000000))
+tx = slocktx(alice.address,secret,mosaic(xymhex,1000000))
 hash = await sigan(tx,alice);
 clog(hash)
 
