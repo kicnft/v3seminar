@@ -188,6 +188,10 @@ v = new sym.Verifier(new core.PublicKey(block.signerPublicKey))
 v.verify(buf,new core.Signature(block.signature))
 ```
 
+##### SDK
+- Verifier
+	- https://symbol.github.io/symbol/sdk/javascript/classes/symbol.Verifier.html
+
 #### チェーン検証
 ```js
 hasher = sha3_256.create();
