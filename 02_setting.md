@@ -82,7 +82,7 @@ function txstat(tx){
     console.log(`== TRANSACTION STATUS ==`);
     console.log(`[ 名称: ${tx.constructor.name} ]`);
     console.log(`[ 有効期限: ${new Date(epochAdjustment * 1000 + Number(tx.deadline))} ]`);
-    const useFee = tx.size / 1000000 * 100;
+    const useFee = tx.size / 10000;
     console.log(`[ 手数料係数: 100, データサイズ: ${tx.size}Byte, 想定手数料: ${useFee}XYM ]`);
     console.log(`[ 署名アドレス: ${chain.network.publicKeyToAddress(tx.signerPublicKey)} ]`);
 }
