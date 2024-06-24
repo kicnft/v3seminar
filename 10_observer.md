@@ -18,7 +18,7 @@ function addcb(channel, callback){
   funcMap[channel].push(callback);
 };
 
-function connectWebSocket(targetNode) {
+function connws(targetNode) {
     return new Promise((resolve, reject) => {
         const wsEndpoint = targetNode.replace("http", "ws") + "/ws";
         const socket = new WebSocket(wsEndpoint);
@@ -57,10 +57,10 @@ console.log("Import Observer Script")
 
 ### 接続
 ```js
-ws = await connectWebSocket(node);
+ws = await connws(node);
 ```
 ##### Script
-- await connectWebSocket ( targetNode )
+- await connws ( targetNode )
 
 
 ### ブロック生成
@@ -172,6 +172,8 @@ clog(hlhash);
 ##### SDK 
 - SymbolPublicAccount
   - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolPublicAccount.html
+- Keypair.sign
+  - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.KeyPair.html#sign
     
 ##### API
 - channels : partialAdded
