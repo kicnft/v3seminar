@@ -169,6 +169,14 @@ clog(hlhash);
 - addcb ( channel, callback )
 - wssend ( uid, channel )
 
+##### SDK 
+- SymbolPublicAccount
+  - https://symbol.github.io/symbol/sdk/javascript/classes/symbol.SymbolPublicAccount.html
+    
 ##### API
 - channels : partialAdded
   - https://docs.symbol.dev/api.html#channels
+- /transactions/partial
+  - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-routes/operation/announcePartialTransaction
+- /transactions/cosignature
+  - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Transaction-routes/operation/announceCosignatureTransaction
