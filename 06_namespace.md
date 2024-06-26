@@ -268,6 +268,7 @@ res.accountNames[0].names
 - /namespaces/account/names
     - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Namespace-routes/operation/getAccountsNames
 
+#### モザイクの逆引き
 ```js
 //モザイクIDを確認
 nsinfo = await api("/namespaces/" + nstohex("kicnft_test.mosaic"))
@@ -277,4 +278,7 @@ body = {"mosaicIds": [mosaicId]};
 res = await api("/namespaces/mosaic/names","POST",body)
 res.mosaicNames[0].names
 ```
+##### API
+- /namespaces/mosaic/names
+    - https://symbol.github.io/symbol-openapi/v1.0.3/#tag/Namespace-routes/operation/getMosaicsNames
 
