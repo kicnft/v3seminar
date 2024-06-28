@@ -372,7 +372,7 @@ hasher.update(targetAddress);
 hasher.update(hexToUint8("9772B71B058127D7").reverse());  // scopeKey, メタデータキーを指定
 hasher.update(hexToUint8("0000000000000000").reverse());  // targetId
 hasher.update(Uint8Array.from([0]));                      // account
-value = new TextEncoder().encode("updatedtest");          // メタデータの値を指定
+value = new TextEncoder().encode("test");          // メタデータの値を指定
 hasher.update(new Uint8Array((new Uint16Array([value.length])).buffer));
 hasher.update(value); 
 stateHash = uint8ToHex(hasher.digest());
