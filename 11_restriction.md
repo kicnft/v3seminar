@@ -38,10 +38,11 @@ function operestx(flags,restrictionAdditions,restrictionDeletions){
 }
 
 function mosglorestx(
-    mosaicId,referenceMosaicId,restrictionKey,
-    previousRestrictionValue,newRestrictionValue,
-    previousRestrictionType,newRestrictionType
+    mosaicId,restrictionKey,newRestrictionValue,newRestrictionType
 ){
+    const referenceMosaicId = 0;
+    const previousRestrictionValue = 0n;
+    const previousRestrictionType = 0;
     descriptor = new sym.descriptors.MosaicGlobalRestrictionTransactionV1Descriptor(
         mosaicId,referenceMosaicId,restrictionKey,
         previousRestrictionValue,newRestrictionValue,
@@ -160,7 +161,7 @@ tx2 = mossctx(mosid,1000,1)
 
 key = sym.metadataGenerateKey("KYC"); // restrictionKey 
 //MosaicGlobalRestrictionTransaction
-tx3 = mosglorestx(mosid,0,key,0n,1n,0,1)
+tx3 = mosglorestx(mosid,key,0n,1n,0,1)
 //MosaicRestrictionType
 //0:NONE
 //1:EQ (equal: = )
