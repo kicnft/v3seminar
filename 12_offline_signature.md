@@ -18,6 +18,7 @@ function sig(aggregateTransaction,signer){
 console.log("Import Offline Signature Script")
 ```
 
+## 演習
 ### 事前準備
 ```js
 bob = newacnt()
