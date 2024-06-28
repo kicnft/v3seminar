@@ -161,7 +161,7 @@ tx2 = mossctx(mosid,1000,1)
 
 key = sym.metadataGenerateKey("KYC"); // restrictionKey 
 //MosaicGlobalRestrictionTransaction
-tx3 = mosglorestx(mosid,key,0n,1n,0,1)
+tx3 = mosglorestx(mosid,key,1n,1)
 //MosaicRestrictionType
 //0:NONE
 //1:EQ (equal: = )
