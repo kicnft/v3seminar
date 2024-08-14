@@ -76,7 +76,7 @@ function metaquery(addressOrId,sourceAddress,scopedMetadataKey,metadataType){
         query = new URLSearchParams({
           "targetAddress": addressOrId.toString(),
           "sourceAddress": sourceAddress.toString(),
-          "scopedMetadataKey": key.toString(16).toUpperCase(),
+          "scopedMetadataKey": scopedMetadataKey.toString(16).toUpperCase(),
           "metadataType": metadataType
         });
     }else{
@@ -85,7 +85,7 @@ function metaquery(addressOrId,sourceAddress,scopedMetadataKey,metadataType){
         query = new URLSearchParams({
             "targetId": addressOrId.toString(16).toUpperCase(),
             "sourceAddress": sourceAddress.toString(),
-            "scopedMetadataKey": key.toString(16).toUpperCase(),
+            "scopedMetadataKey": scopedMetadataKey.toString(16).toUpperCase(),
             "metadataType": metadataType
         });
     }
