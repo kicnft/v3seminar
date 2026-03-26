@@ -17,7 +17,7 @@ add2Hours = 60 * 60 * 2;
 netstat();
 
 //SDK
-bundle = await import("https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js");
+bundle = await import("https://www.unpkg.com/symbol-sdk@3.3.0/dist/bundle.web.js");
 core = bundle.core;
 sym  = bundle.symbol;
 chain = new sym.SymbolFacade(networkId);
