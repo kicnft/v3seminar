@@ -5,10 +5,10 @@
     - npm
         - https://www.npmjs.com/package/symbol-sdk
     - unpkg bundle
-        - https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js
+        - https://www.unpkg.com/symbol-sdk@3.3.0/dist/bundle.web.js
 
 ```js
-bundle = await import("https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js");
+bundle = await import("https://www.unpkg.com/symbol-sdk@3.3.0/dist/bundle.web.js");
 ```
 
 ## リファレンス
@@ -44,7 +44,7 @@ add2Hours = 60 * 60 * 2;
 netstat();
 
 //SDK
-bundle = await import("https://www.unpkg.com/symbol-sdk@3.2.2/dist/bundle.web.js");
+bundle = await import("https://www.unpkg.com/symbol-sdk@3.3.0/dist/bundle.web.js");
 core = bundle.core;
 sym  = bundle.symbol;
 chain = new sym.SymbolFacade(networkId);
